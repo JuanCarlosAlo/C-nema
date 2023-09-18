@@ -1,13 +1,16 @@
-import React from 'react';
 import { GlobalStyles } from './styles/GlobalStyles.js';
-import Component from './components/component';
+import { BrowserRouter } from 'react-router-dom';
+import Router from './router/Router.js';
+import ModalProvider from './providers/Modal.provider.js';
 
 const App = () => {
 	return (
-		<>
+		<BrowserRouter>
 			<GlobalStyles />
-			<Component name={'JC'} age={26}/>
-		</>
+			<ModalProvider>
+				<Router />
+			</ModalProvider>
+		</BrowserRouter>
 	);
 };
 
