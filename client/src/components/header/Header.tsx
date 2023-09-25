@@ -5,13 +5,10 @@ import Text from '../text/Text';
 import { MEASUREMENTS } from '../../constants/measurements';
 import { COLORS } from '../../constants/colors';
 const Header = () => {
-
-
-
 	return (
 		<StyledHeader>
 			<StyledHeaderContainer>
-				<Logo fontSize={MEASUREMENTS.FONTS_SIZE.KEY.TITLE} />
+				<Logo fontSize={MEASUREMENTS.FONTS_SIZE.KEY.SUBTITLES} />
 				{/* {currentUser ? (
 					<nav>
 						<StyledMenu>
@@ -31,32 +28,32 @@ const Header = () => {
 						</StyledMenu>
 					</nav>
 				) : ( */}
-					<nav>
-						<StyledMenu>
-							<Link to={'/register'}>
-								<li>
-									<Text
-										align={MEASUREMENTS.ALIGN.CENTER}
-										color={COLORS.MAIN}
-										fontSize={MEASUREMENTS.FONTS_SIZE.KEY.SUBTITLES}
-										nofullwidth={true}
-										text={'Register'}
-									/>
-								</li>
-							</Link>
-							<Link to={'/login'}>
-								<li>
-									<Text
-										align={MEASUREMENTS.ALIGN.CENTER}
-										color={COLORS.MAIN}
-										fontSize={MEASUREMENTS.FONTS_SIZE.KEY.SUBTITLES}
-										nofullwidth={true}
-										text={'Login'}
-									/>
-								</li>
-							</Link>
-						</StyledMenu>
-					</nav>
+				<nav>
+					<StyledMenu>
+						<Link to={'/register'}>
+							<li>
+								<Text
+									align={MEASUREMENTS.ALIGN.CENTER}
+									color={COLORS.MAIN}
+									fontSize={MEASUREMENTS.FONTS_SIZE.KEY.TEXT}
+									nofullwidth={true}
+									text={'Register'}
+								/>
+							</li>
+						</Link>
+						<Link to={'/login'}>
+							<li>
+								<Text
+									align={MEASUREMENTS.ALIGN.CENTER}
+									color={COLORS.MAIN}
+									fontSize={MEASUREMENTS.FONTS_SIZE.KEY.TEXT}
+									nofullwidth={true}
+									text={'Login'}
+								/>
+							</li>
+						</Link>
+					</StyledMenu>
+				</nav>
 				{/* )} */}
 			</StyledHeaderContainer>
 		</StyledHeader>

@@ -1,4 +1,4 @@
-export interface Episode {
+interface Episode {
 	_id: string;
 	episodeTitle: string;
 	episodeCover: string;
@@ -9,14 +9,16 @@ export interface Episode {
 	dateUpladed: number;
 }
 
-export interface Season {
+interface Season {
 	_id: string;
 	episodes: Episode[];
 }
 
 export interface MediaItem {
-	title: string;
+	_id: string;
 	cover: string;
+	type: 'movie' | 'show';
+	title: string;
 	info: {
 		director: string;
 		cast: string[];
@@ -26,5 +28,6 @@ export interface MediaItem {
 		dateCreated: number;
 		dateUpladed: number;
 	};
+	media?: string;
 	seasons?: Season[];
 }

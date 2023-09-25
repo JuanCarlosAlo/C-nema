@@ -33,14 +33,15 @@ const StyledModal = styled.div`
 	left: 0;
 	height: 100vh;
 	width: 100vw;
-	background-color: rgba(255, 255, 255, 0.6);
+	background-color: ${COLORS.BLACK_TRANSPARENT};
 	z-index: 100;
 	/* animation: ${fadeIn} 4.5s ease-in-out 1 forwards; */
 `;
 
 const StyledModalContainer = styled.div`
-	background-color: ${COLORS.MAIN};
+	background-color: ${COLORS.BLACK};
 	border: 2px solid ${COLORS.MAIN};
-	padding: 1rem;
+	/* border-radius: 1rem; */
+	padding-bottom: 1rem;
 `;
 export { StyledModal, StyledModalContainer };

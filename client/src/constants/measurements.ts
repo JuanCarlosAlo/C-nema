@@ -28,10 +28,10 @@ export const MEASUREMENTS = {
 	},
 	FONTS_SIZE: {
 		TITLE: {
-			MOBILE: '1.35rem',
-			TABLET: '1.4rem',
-			DESKTOP: '1.6rem',
-			HIGH_HD: '1.75rem'
+			MOBILE: '2.5rem',
+			TABLET: '2.8rem',
+			DESKTOP: '3rem',
+			HIGH_HD: '3.5rem'
 		},
 		SUBTITLES: {
 			MOBILE: '1.05rem',
@@ -69,8 +69,18 @@ export const MEASUREMENTS = {
 		HEIGHT: '40px'
 	},
 	ICONS: {
-		HEIGHT: '30px',
-		WIDTH: '30px'
+		DESKTOP: {
+			HEIGHT: '20px',
+			WIDTH: '20px'
+		},
+		TABLET: {
+			HEIGHT: '20px',
+			WIDTH: '20px'
+		},
+		MOBILE: {
+			HEIGHT: '15px',
+			WIDTH: '15px'
+		}
 	},
 	PAGES: {
 		HEIGHT: '100vh'

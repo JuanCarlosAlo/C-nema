@@ -33,41 +33,59 @@ const StyledText = styled.p<StyledTexteProps>`
 		fontSize
 			? MEASUREMENTS.FONTS_SIZE[fontSize]?.MOBILE
 			: MEASUREMENTS.FONTS_SIZE.TEXT.MOBILE};
-	margin-top: ${({ fontSize }) =>
-		fontSize
-			? `calc(${MEASUREMENTS.FONTS_SIZE[fontSize].MOBILE} - 0.5rem)`
-			: '-0.2rem'};
-	margin-bottom: ${({ fontSize }) =>
-		fontSize
-			? `calc(${MEASUREMENTS.FONTS_SIZE[fontSize].MOBILE} - 0.5rem)`
-			: '-0.2rem'};
+	margin-top: ${({ fontSize, margin }) => {
+		if (margin !== 'auto') {
+			return margin;
+		} else {
+			return `calc(${MEASUREMENTS.FONTS_SIZE[fontSize].MOBILE} - 0.5rem)`;
+		}
+	}};
+	margin-bottom: ${({ fontSize, margin }) => {
+		if (margin !== 'auto') {
+			return margin;
+		} else {
+			return `calc(${MEASUREMENTS.FONTS_SIZE[fontSize].MOBILE} - 0.5rem)`;
+		}
+	}};
 	@media screen and (min-width: 868px) {
 		font-size: ${({ fontSize }) =>
 			fontSize
 				? MEASUREMENTS.FONTS_SIZE[fontSize]?.TABLET
 				: MEASUREMENTS.FONTS_SIZE.TITLE.TABLET};
-		margin-top: ${({ fontSize }) =>
-			fontSize
-				? `calc(${MEASUREMENTS.FONTS_SIZE[fontSize].TABLET} - 0.5rem)`
-				: '-0.2rem'};
-		margin-bottom: ${({ fontSize }) =>
-			fontSize
-				? `calc(${MEASUREMENTS.FONTS_SIZE[fontSize].TABLET} - 0.5rem)`
-				: '-0.2rem'};
+		margin-top: ${({ margin, fontSize }) => {
+			if (margin !== 'auto') {
+				return margin;
+			} else {
+				return `calc(${MEASUREMENTS.FONTS_SIZE[fontSize].TABLET} - 0.5rem)`;
+			}
+		}};
+		margin-bottom: ${({ margin, fontSize }) => {
+			if (margin !== 'auto') {
+				return margin;
+			} else {
+				return `calc(${MEASUREMENTS.FONTS_SIZE[fontSize].TABLET} - 0.5rem)`;
+			}
+		}};
 	}
 	@media screen and (min-width: 1024px) {
 		font-size: ${({ fontSize }) =>
 			fontSize
 				? MEASUREMENTS.FONTS_SIZE[fontSize]?.DESKTOP
 				: MEASUREMENTS.FONTS_SIZE.TITLE.DESKTOP};
-		margin-top: ${({ fontSize }) =>
-			fontSize
-				? `calc(${MEASUREMENTS.FONTS_SIZE[fontSize].DESKTOP} - 0.5rem)`
-				: '-0.2rem'};
-		margin-bottom: ${({ fontSize }) =>
-			fontSize
-				? `calc(${MEASUREMENTS.FONTS_SIZE[fontSize].DESKTOP} - 0.5rem)`
-				: '-0.2rem'};
+		margin-top: ${({ margin, fontSize }) => {
+			if (margin !== 'auto') {
+				return margin;
+			} else {
+				return `calc(${MEASUREMENTS.FONTS_SIZE[fontSize].DESKTOP} - 0.5rem)`;
+			}
+		}};
+		margin-bottom: ${({ margin, fontSize }) => {
+			if (margin !== 'auto') {
+				return margin;
+			} else {
+				return `calc(${MEASUREMENTS.FONTS_SIZE[fontSize].DESKTOP} - 0.5rem)`;
+			}
+		}};
 	}
 `;
 

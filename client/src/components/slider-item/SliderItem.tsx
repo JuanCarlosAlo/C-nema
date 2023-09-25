@@ -1,8 +1,10 @@
 import { COLORS } from '../../constants/colors';
 import { MEASUREMENTS } from '../../constants/measurements';
 import { MediaItem } from '../../interfaces/mediaItem';
+import { getMediaProps } from '../../utils/getMediaProps';
 import AddToListButton from '../add-to-list-button/AddToListButton';
 import MoreInfoButton from '../more-info-button/MoreInfoButton';
+import PlayButton from '../play-button/PlayButton';
 import Text from '../text/Text';
 import {
 	StyledImgItem,
@@ -18,20 +20,14 @@ interface SliderItemProps {
 
 const SliderItem = ({ mediaItem }: SliderItemProps) => {
 	if (!mediaItem) return <p>Loading</p>;
+	const media = getMediaProps(mediaItem);
 
 	return (
 		<StyledSliderItem>
 			<StyledImgItem src={mediaItem.cover} alt='cover' />
 			<StyledInfoContainer>
 				<StyledInfoHover>
-					<Text
-						align={MEASUREMENTS.ALIGN.CENTER}
-						color={COLORS.MAIN}
-						fontSize={MEASUREMENTS.FONTS_SIZE.KEY.SMALL_TEXT}
-						margin={'auto'}
-						nofullwidth={true}
-						text={`Play`}
-					/>
+					<PlayButton media={media} index={0} />
 					<AddToListButton />
 					<MoreInfoButton mediaItem={mediaItem} />
 				</StyledInfoHover>
@@ -50,7 +46,11 @@ const SliderItem = ({ mediaItem }: SliderItemProps) => {
 						fontSize={MEASUREMENTS.FONTS_SIZE.KEY.SMALL_TEXT}
 						margin={'auto'}
 						nofullwidth={true}
-						text={`${mediaItem.seasons?.length} Seasons`}
+						text={
+							mediaItem.type === 'show'
+								? `${mediaItem.seasons?.length} Seasons`
+								: mediaItem.type
+						}
 					/>
 				</StyledInfoHover>
 				<StyledInfoHover>

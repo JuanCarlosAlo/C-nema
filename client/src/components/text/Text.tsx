@@ -2,7 +2,7 @@ import { MEASUREMENTS } from '../../constants/measurements';
 import { StyledText } from './styles';
 
 interface TextProps {
-	text?: string;
+	text?: string | number;
 	fontSize?: keyof typeof MEASUREMENTS.FONTS_SIZE;
 	align?: string;
 	margin?: string;
@@ -10,13 +10,21 @@ interface TextProps {
 	color?: string;
 }
 
-const Text = ({ text, color, fontSize, align, nofullwidth }: TextProps) => {
+const Text = ({
+	text,
+	color,
+	fontSize,
+	align,
+	nofullwidth,
+	margin
+}: TextProps) => {
 	return (
 		<StyledText
 			color={color}
 			align={align}
 			fontSize={fontSize}
 			nofullwidth={nofullwidth}
+			margin={margin}
 		>
 			{text}
 		</StyledText>

@@ -41,16 +41,18 @@ const GlobalStyles = createGlobalStyle`
 
 /* Chrome, Edge and Safari */
 *::-webkit-scrollbar {
-  width: 10px;
-  width: 10px;
+  height: 5px;
+  width: 5px;
 }
 *::-webkit-scrollbar-track {
   border-radius: 0px;
   background-color: transparent;
+  
 }
 
 *::-webkit-scrollbar-track:hover {
   background-color: transparent;
+  
 }
 
 *::-webkit-scrollbar-track:active {
@@ -59,15 +61,43 @@ const GlobalStyles = createGlobalStyle`
 
 *::-webkit-scrollbar-thumb {
   border-radius: 5px;
-  background-color: transparent;
+  background-color: ${COLORS.MAIN};
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: transparent;
+  background-color: ${COLORS.MAIN};
+
 }
 
 *::-webkit-scrollbar-thumb:active {
   background-color:${COLORS.MAIN};
+}
+.video-js .vjs-big-play-button {
+ background-color: ${COLORS.MAIN};
+ top: 50%;
+ left: 50%;
+ transform: translateX(-50%);
+ height: 50px;
+ width: 100px;
+	color: white;
+	padding: 10px 20px;
+	font-size: 16px;
+	border: none;
+	cursor: pointer;
+	/* ... otros estilos personalizados ... */
+
+	&:hover {
+		/* Estilos al pasar el cursor sobre el botón */
+		background-color: ${COLORS.SECONDARY};
+	}
+}
+.vjs-icon-placeholder:before, .video-js .vjs-big-play-button .vjs-icon-placeholder:before {
+    position: absolute;
+    top: 40%;
+    left: 0;
+    transform: scale(1.5);
+    width: 100%;
+    height: 100%;
 }
 `;
 

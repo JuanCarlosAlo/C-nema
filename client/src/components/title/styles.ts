@@ -24,7 +24,7 @@ const StyledTitle = styled.p<StyledTitleProps>`
 	margin-top: ${({ margin }) => margin};
 	margin-bottom: ${({ margin }) => margin};
 	width: 100%;
-	background-color: ${COLORS.MAIN};
+
 	@media screen and (min-width: 768px) {
 		font-size: ${({ fontSize }) =>
 			fontSize
