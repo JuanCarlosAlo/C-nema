@@ -10,25 +10,37 @@ import {
 	StyledImgItem,
 	StyledInfoContainer,
 	StyledInfoHover,
-	StyledSliderItem
+	StyledSliderItem,
+	StyledTitleContainer
 } from './styles';
 import { v4 } from 'uuid';
 
 interface SliderItemProps {
 	mediaItem?: MediaItem;
+	margin: number | string;
 }
 
-const SliderItem = ({ mediaItem }: SliderItemProps) => {
+const SliderItem = ({ mediaItem, margin }: SliderItemProps) => {
 	if (!mediaItem) return <p>Loading</p>;
 	const media = getMediaProps(mediaItem);
 
 	return (
-		<StyledSliderItem>
+		<StyledSliderItem margin={margin}>
+			<StyledTitleContainer>
+				<Text
+					align={MEASUREMENTS.ALIGN.LEFT}
+					color={COLORS.MAIN}
+					fontSize={MEASUREMENTS.FONTS_SIZE.KEY.TEXT}
+					margin={'auto'}
+					nofullwidth={false}
+					text={mediaItem.title}
+				/>
+			</StyledTitleContainer>
 			<StyledImgItem src={mediaItem.cover} alt='cover' />
 			<StyledInfoContainer>
 				<StyledInfoHover>
 					<PlayButton media={media} index={0} />
-					<AddToListButton />
+					<AddToListButton id={mediaItem._id} />
 					<MoreInfoButton mediaItem={mediaItem} />
 				</StyledInfoHover>
 				<StyledInfoHover>

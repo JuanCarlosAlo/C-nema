@@ -2,12 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import videojs from 'video.js';
 import 'video.js/dist/video-js.css';
 import {
+	StyledBackButton,
 	StyledEpisodeButton,
 	StyledVideo,
 	StyledVideoPlayerContainer,
 	VideoContainer
 } from './styles';
 import { useNavigate } from 'react-router-dom';
+import Icon from '../icon/Icon';
 
 interface VideoPlayerProps {
 	videos: {
@@ -84,6 +86,14 @@ const VideoPlayer = ({ videos, videoIndex }: VideoPlayerProps) => {
 
 	return (
 		<StyledVideoPlayerContainer>
+			<StyledBackButton>
+				<Icon
+					img={'/images/グループL.svg'}
+					alt='arrow icon'
+					setValue={navigate}
+					value={'/'}
+				/>
+			</StyledBackButton>
 			<VideoContainer>
 				<StyledVideo ref={videoRef} className='video-js' />
 			</VideoContainer>

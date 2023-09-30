@@ -6,18 +6,14 @@ const UserScheme = mongoose.Schema(
         email: String,
         userName: String,
         type: String,
-        savedMedia: {
+        savedMedia: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "savedMedia",
-        },
-        recomendedTags: {
-            type: mongoose.Schema.Types.ObjectId,
-            ref: "recomendedTags",
-        },
-        watched: {
+        }],
+        watched: [{
             type: mongoose.Schema.Types.ObjectId,
             ref: "watched",
-        }
+        }]
     },
     {
         collection: 'users'

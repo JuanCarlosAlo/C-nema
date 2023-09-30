@@ -10,14 +10,14 @@ export const MEASUREMENTS = {
 		},
 		SECONDARY: {
 			HEIGHT: {
-				MOBILE: '160px',
+				MOBILE: '60px',
 				DESKTOP: '60px'
 			}
 		}
 	},
 	PADDING: {
 		SECONDARY_HEADER: {
-			MOBILE: '160px',
+			MOBILE: '60px',
 			DESKTOP: '60px'
 		},
 		MOBILE_OUTSIDE: '0.5rem'
@@ -28,10 +28,10 @@ export const MEASUREMENTS = {
 	},
 	FONTS_SIZE: {
 		TITLE: {
-			MOBILE: '2.5rem',
-			TABLET: '2.8rem',
-			DESKTOP: '3rem',
-			HIGH_HD: '3.5rem'
+			MOBILE: '1.3rem',
+			TABLET: '1.4rem',
+			DESKTOP: '1.8rem',
+			HIGH_HD: '2rem'
 		},
 		SUBTITLES: {
 			MOBILE: '1.05rem',

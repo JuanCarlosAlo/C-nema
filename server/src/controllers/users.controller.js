@@ -1,5 +1,9 @@
 const { v4 } = require("uuid");
 const UserModel = require("../schemes/users.scheme");
+const ListedModel = require("../schemes/listed.scheme");
+const { default: mongoose } = require("mongoose");
+const ShowModel = require("../schemes/show.scheme");
+const MovieModel = require("../schemes/movies.scheme");
 
 const controller = {};
 
@@ -25,7 +29,8 @@ controller.getUserId = async (req, res) => {
 
 controller.createUser = async (req, res) => {
   try {
-    const { userName, email, type, _id } = req.body;
+    const { userName, email, type, _id, savedMedia, watched } = req.body;
+    console.log(req.body)
     const newDate = Date.now();
 
     const newUser = await new UserModel({
@@ -34,6 +39,8 @@ controller.createUser = async (req, res) => {
       email,
       accountCreated: newDate,
       type,
+      savedMedia,
+      watched
     });
 
     const userExist = await UserModel.findOne({ email });
@@ -77,5 +84,112 @@ controller.deleteUser = async (req, res) => {
     res.status(500).json({ message: "Error deleting user" });
   }
 };
+
+
+controller.addToList = async (req, res) => {
+  try {
+    const userId = req.params.id;
+    const itemToAdd = req.body.id;
+
+    // Buscar al usuario por su ID
+    const currentUser = await UserModel.findById(userId);
+
+    // Buscar la lista asociada al usuario por su ID
+    let listCollection = await ListedModel.findOne({ userId: userId });
+
+    if (!listCollection) {
+      // Si no se encuentra la lista, crear una nueva
+      listCollection = await ListedModel.create({
+        _id: new mongoose.Types.ObjectId(),
+        userId,
+        type: 'list',
+        listedItems: [],
+      });
+    }
+
+    // Verificar si el elemento ya está en la lista
+    const existingIndex = listCollection.listedItems.findIndex(
+      (item) => item._id.toString() === itemToAdd
+    );
+
+    if (existingIndex !== -1) {
+      // Si el elemento ya está en la lista, eliminarlo
+      listCollection.listedItems.splice(existingIndex, 1);
+    } else {
+      // Si el elemento no está en la lista, agregarlo
+      listCollection.listedItems.unshift({
+        _id: itemToAdd,
+        date: new Date(),
+      });
+    }
+
+    // Guardar la lista actualizada
+    await listCollection.save();
+
+    // Verificar si la lista está en los medios guardados del usuario
+    const existingListRef = currentUser.savedMedia.find(
+      (listRef) => listRef.toString() === listCollection._id.toString()
+    );
+
+    if (!existingListRef) {
+      // Si la lista no está en los medios guardados del usuario, agregarla
+      currentUser.savedMedia.unshift(listCollection._id);
+      await currentUser.save();
+    }
+
+    res.status(200).send(listCollection);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error adding to list" });
+  }
+};
+
+
+controller.getList = async (req, res) => {
+  const currentUserList = await ListedModel.findOne({ userId: req.params.id });
+
+  try {
+    res.status(200).send(currentUserList);
+  } catch (error) {
+    res.status(500).send({ error: "Error al leer la base de datos" });
+  }
+};
+
+controller.getListItems = async (req, res) => {
+  try {
+    const currentUserList = await ListedModel.findOne({ userId: req.params.id });
+
+    const listedItems = currentUserList.listedItems;
+    if (listedItems.length === 0) {
+      return res.status(200).send([]);
+    }
+
+    const allListedShowsPromises = listedItems.map(async (item) => {
+      const listedShow = await ShowModel.findById(item.id);
+      return listedShow;
+    });
+
+    const allListedMoviesPromises = listedItems.map(async (item) => {
+      const listedMovie = await MovieModel.findById(item.id);
+      return listedMovie;
+    });
+
+    const [allListedShows, allListedMovies] = await Promise.all([
+      Promise.all(allListedShowsPromises),
+      Promise.all(allListedMoviesPromises),
+    ]);
+
+    const filteredListedShows = allListedShows.filter((show) => show !== null);
+    const filteredListedMovies = allListedMovies.filter((movie) => movie !== null);
+
+    const allListedItems = [...filteredListedMovies, ...filteredListedShows];
+
+    res.status(200).send(allListedItems);
+  } catch (error) {
+    res.status(500).send({ error: "Error al leer la base de datos" });
+  }
+};
+
+
 
 module.exports = controller;

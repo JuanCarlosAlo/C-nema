@@ -1,8 +1,17 @@
 import { createContext, useContext } from 'react';
 
+interface User {
+	uid: string;
+	email: String;
+	userName: String;
+	type: String;
+	savedMedia: any;
+	watched: any;
+}
+
 interface AuthContextValues {
-	content: any;
-	setContent: React.Dispatch<any>;
+	currentUser: User | null;
+	loadingFirebase: boolean;
 }
 
 export const AuthContext = createContext<AuthContextValues | undefined>(

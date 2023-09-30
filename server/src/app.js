@@ -23,6 +23,7 @@ const io = new Server(httpServer, {
 const showsRoutes = require('./routes/shows.routes');
 const moviesRoutes = require('./routes/movies.routes');
 const usersRoutes = require('./routes/users.routes');
+const allItemsRoutes = require('./routes/allItems.routes');
 
 
 // Middlewares para cliente
@@ -65,6 +66,7 @@ io.on("connection", (socket) => {
 app.use("/users", usersRoutes);
 app.use("/shows", showsRoutes);
 app.use("/movies", moviesRoutes);
+app.use("/all", allItemsRoutes)
 
 
 

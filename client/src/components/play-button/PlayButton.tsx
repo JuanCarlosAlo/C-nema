@@ -11,16 +11,18 @@ interface MoreInfoModalProps {
 		id: string;
 	}[];
 	index: number;
+	setValue?: (value: any) => void;
 }
 
-const PlayButton = ({ media, index }: MoreInfoModalProps) => {
+const PlayButton = ({ media, index, setValue }: MoreInfoModalProps) => {
 	const navigate = useNavigate();
 
 	return (
 		<StyledPlayButton
-			onClick={() =>
-				navigate('/video/' + media[index].id, { state: { media, index } })
-			}
+			onClick={() => {
+				if (setValue) setValue(null);
+				navigate('/video/' + media[index].id, { state: { media, index } });
+			}}
 		>
 			<Icon img='/images/play-solid.svg' alt='play button' />
 			<Text

@@ -88,7 +88,7 @@ const GlobalStyles = createGlobalStyle`
 
 	&:hover {
 		/* Estilos al pasar el cursor sobre el botón */
-		background-color: ${COLORS.SECONDARY};
+		background-color: ${COLORS.MAIN_HOVER};
 	}
 }
 .vjs-icon-placeholder:before, .video-js .vjs-big-play-button .vjs-icon-placeholder:before {
@@ -98,6 +98,8 @@ const GlobalStyles = createGlobalStyle`
     transform: scale(1.5);
     width: 100%;
     height: 100%;
+}.video-js .vjs-big-play-button {
+  background-color: ${COLORS.MAIN};
 }
 `;
 

@@ -1,5 +1,12 @@
 import styled from 'styled-components';
 
+const SliderContainer = styled.div`
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	justify-content: flex-start;
+	width: 100%;
+`;
 const StyledSlider = styled.div`
 	display: flex;
 	align-items: flex-start;
@@ -11,4 +18,4 @@ const StyledSlider = styled.div`
 	height: 320px;
 `;
 
-export { StyledSlider };
+export { StyledSlider, SliderContainer };

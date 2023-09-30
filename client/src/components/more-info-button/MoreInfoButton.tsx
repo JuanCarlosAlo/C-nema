@@ -8,11 +8,10 @@ import Icon from '../icon/Icon';
 import { StyledMoreInfoButton } from './styles';
 
 interface MoreInfoButtonProps {
-	mediaItem?: MediaItem;
+	mediaItem: MediaItem;
 }
 
 const MoreInfoButton = ({ mediaItem }: MoreInfoButtonProps) => {
-	if (!mediaItem) return;
 	const { setContent } = useModalContext();
 	return (
 		<StyledMoreInfoButton

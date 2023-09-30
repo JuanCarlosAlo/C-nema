@@ -49,8 +49,12 @@ const MoreInfoModal = ({ media, setContent }: MoreInfoModalProps) => {
 						text={media?.title}
 					/>
 					<StyledInfoGap>
-						<PlayButton media={playButtonProps} index={0} />
-						<AddToListButton />
+						<PlayButton
+							media={playButtonProps}
+							index={0}
+							setValue={setContent}
+						/>
+						<AddToListButton id={media._id} />
 					</StyledInfoGap>
 				</StyledTitleContainer>
 

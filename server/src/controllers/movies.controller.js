@@ -25,13 +25,14 @@ controller.getMovieId = async (req, res) => {
 
 controller.createMovie = async (req, res) => {
   try {
-    const { cover, type, director, cast, genres, maturityRating, description, dateCreated, media } = req.body;
+    const { cover, type, director, cast, genres, maturityRating, description, dateCreated, media, title } = req.body;
     const newDate = Date.now();
 
     const newMovie = await new MovieModel({
       _id: v4(),
       cover,
       type,
+      title,
       info: {
         director,
         cast,
