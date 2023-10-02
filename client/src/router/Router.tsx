@@ -9,6 +9,7 @@ import Profile from '../pages/Profile/Profile';
 import ListPage from '../pages/ListPage/ListPage';
 import Movies from '../pages/Movies/Movies';
 import Shows from '../pages/Shows/Shows';
+import Search from '../pages/Search/Search';
 
 const Router = () => {
 	return (
@@ -22,6 +23,7 @@ const Router = () => {
 				<Route path='/my-list' element={<ListPage />} />
 				<Route path='/movies' element={<Movies />} />
 				<Route path='/shows' element={<Shows />} />
+				<Route path='/search' element={<Search />} />
 			</Route>
 		</Routes>
 	);

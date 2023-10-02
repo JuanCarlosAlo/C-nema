@@ -18,16 +18,12 @@ import Seasons from '../seasons/Seasons';
 import PlayButton from '../play-button/PlayButton';
 import AddToListButton from '../add-to-list-button/AddToListButton';
 
-import { getPlayButtonProps } from '../../utils/getPlayButtonProps';
-
 interface MoreInfoModalProps {
-	media: MediaItem;
+	mediaItem: MediaItem;
 	setContent: (content: MediaItem | null) => void;
 }
 
-const MoreInfoModal = ({ media, setContent }: MoreInfoModalProps) => {
-	const playButtonProps = getPlayButtonProps(media);
-
+const MoreInfoModal = ({ mediaItem, setContent }: MoreInfoModalProps) => {
 	return (
 		<StyledMorInfoModal>
 			<StyledCoverContainer>
@@ -46,19 +42,15 @@ const MoreInfoModal = ({ media, setContent }: MoreInfoModalProps) => {
 						fontSize={MEASUREMENTS.FONTS_SIZE.KEY.TITLE}
 						margin='auto'
 						nofullwidth={false}
-						text={media?.title}
+						text={mediaItem?.title}
 					/>
 					<StyledInfoGap>
-						<PlayButton
-							media={playButtonProps}
-							index={0}
-							setValue={setContent}
-						/>
-						<AddToListButton id={media._id} />
+						<PlayButton mediaItem={mediaItem} index={0} setValue={setContent} />
+						<AddToListButton id={mediaItem._id} />
 					</StyledInfoGap>
 				</StyledTitleContainer>
 
-				<StyledCoverInfo src={media?.cover} alt='cover' />
+				<StyledCoverInfo src={mediaItem?.cover} alt='cover' />
 			</StyledCoverContainer>
 			{/* descriptionContainer */}
 			<StyledInfoContainer>
@@ -69,16 +61,16 @@ const MoreInfoModal = ({ media, setContent }: MoreInfoModalProps) => {
 						fontSize={MEASUREMENTS.FONTS_SIZE.KEY.TEXT}
 						margin='auto'
 						nofullwidth={true}
-						text={media?.info.dateCreated}
+						text={mediaItem?.info.dateCreated}
 					/>
-					{media?.seasons ? (
+					{mediaItem?.seasons ? (
 						<Text
 							align={MEASUREMENTS.ALIGN.LEFT}
 							color={COLORS.WHITE}
 							fontSize={MEASUREMENTS.FONTS_SIZE.KEY.TEXT}
 							margin='auto'
 							nofullwidth={true}
-							text={`Seasons ${media?.seasons?.length}`}
+							text={`Seasons ${mediaItem?.seasons?.length}`}
 						/>
 					) : (
 						<Text
@@ -87,7 +79,7 @@ const MoreInfoModal = ({ media, setContent }: MoreInfoModalProps) => {
 							fontSize={MEASUREMENTS.FONTS_SIZE.KEY.TEXT}
 							margin='auto'
 							nofullwidth={true}
-							text={media?.type}
+							text={mediaItem?.type}
 						/>
 					)}
 				</StyledInfoGap>
@@ -97,7 +89,7 @@ const MoreInfoModal = ({ media, setContent }: MoreInfoModalProps) => {
 					fontSize={MEASUREMENTS.FONTS_SIZE.KEY.TEXT}
 					margin='auto'
 					nofullwidth={false}
-					text={`Recommended for ages ${media?.info.maturityRating} and up`}
+					text={`Recommended for ages ${mediaItem?.info.maturityRating} and up`}
 				/>
 
 				<Text
@@ -106,10 +98,10 @@ const MoreInfoModal = ({ media, setContent }: MoreInfoModalProps) => {
 					fontSize={MEASUREMENTS.FONTS_SIZE.KEY.TEXT}
 					margin='auto'
 					nofullwidth={false}
-					text={media?.info.description}
+					text={mediaItem?.info.description}
 				/>
-				{media?.seasons && <Seasons media={media} />}
-				<AditionalInfo info={media} />
+				{mediaItem?.seasons && <Seasons media={mediaItem} />}
+				<AditionalInfo info={mediaItem} />
 			</StyledInfoContainer>
 		</StyledMorInfoModal>
 	);

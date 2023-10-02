@@ -20,6 +20,7 @@ interface VideoPlayerProps {
 }
 
 const VideoPlayer = ({ videos, videoIndex }: VideoPlayerProps) => {
+	console.log(videos);
 	const [currentVideoIndex, setCurrentVideoIndex] = useState(videoIndex);
 	const [showNextEpisodeButton, setShowNextEpisodeButton] = useState(false);
 	const navigate = useNavigate();

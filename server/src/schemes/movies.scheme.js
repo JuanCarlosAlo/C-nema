@@ -16,6 +16,7 @@ const MovieScheme = mongoose.Schema(
             dateUpladed: Number,
         },
         media: String,
+        views: Number
 
     },
     {

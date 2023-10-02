@@ -16,7 +16,9 @@ const MoreInfoButton = ({ mediaItem }: MoreInfoButtonProps) => {
 	return (
 		<StyledMoreInfoButton
 			onClick={() =>
-				setContent(<MoreInfoModal setContent={setContent} media={mediaItem} />)
+				setContent(
+					<MoreInfoModal setContent={setContent} mediaItem={mediaItem} />
+				)
 			}
 		>
 			<Icon img='/images/plus-solid.svg' alt='more info icon' />

@@ -14,6 +14,7 @@ interface SliderItemProps {
 
 const StyledSliderItem = styled.div<SliderItemProps>`
 	position: relative;
+
 	height: 300px;
 	width: fit-content;
 	min-width: 300px;
@@ -39,6 +40,7 @@ const StyledTitleContainer = styled.div`
 	left: 0%;
 	top: 100px;
 	width: 300px;
+	height: 85px;
 	padding-top: 50px;
 	padding-left: 0.2rem;
 	padding-right: 0.2rem;
@@ -52,9 +54,9 @@ const StyledInfoContainer = styled.div`
 	justify-content: center;
 	width: 250px;
 	gap: 0.5rem;
-	padding-top: 0.5rem;
-	padding-left: 1rem;
-	padding-right: 1rem;
+	margin-left: auto;
+	margin-right: auto;
+	padding-top: 1rem;
 `;
 
 const StyledInfoHover = styled.div`

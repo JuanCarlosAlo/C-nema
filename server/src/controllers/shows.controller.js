@@ -83,6 +83,18 @@ controller.createShow = async (req, res) => {
   }
 };
 
+controller.addView = async (req, res) => {
+  try {
+    const showToUpdate = await ShowModel.findById(req.body.id);
+    showToUpdate.views += 1;
+    await showToUpdate.save();
+
+
+    res.status(200).send({ message: "Show updated successfully" });
+  } catch (error) {
+    res.status(500).send({ error: "Error al leer la base de datos" });
+  }
+};
 
 
 

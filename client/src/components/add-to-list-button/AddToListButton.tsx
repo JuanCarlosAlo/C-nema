@@ -33,35 +33,15 @@ const AddToListButton = ({ id }: AddToListButtonProps) => {
 		url: USERS_URLS.GET_LIST + currentUser?.uid
 	});
 
-	useEffect(() => {
-		if (currentUser) {
-			setFetchInfo({
-				url: USERS_URLS.GET_LIST + currentUser.uid
-			});
-		}
-	}, [currentUser, setFetchInfo]);
-
-	if (loadingFirebase) return <p>Loading</p>;
+	if (loadingFirebase || loading) return <p>Loading</p>;
 	if (!currentUser) return <Navigate to={'/register'} />;
 
-	if (loading) return <p>Loading</p>;
-	if (!data) return <p>error</p>;
-
-	console.log(data);
-
-	const isListed = data.listedItems.some(item => item._id === id);
+	const isListed = data?.listedItems.some(item => item._id === id);
 
 	return (
 		<StyledAddButton
 			onClick={() =>
-				setFetchInfo({
-					url: USERS_URLS.ADD_TO_LIST + currentUser.uid,
-					options: {
-						method: METHODS.POST,
-						body: JSON.stringify({ id }),
-						headers: HEADERS
-					}
-				})
+				handleClick({ setFetchInfo, currentUserId: currentUser.uid, id })
 			}
 		>
 			<Icon img='/images/plus-solid.svg' alt='add icon' />
@@ -75,6 +55,27 @@ const AddToListButton = ({ id }: AddToListButtonProps) => {
 			/>
 		</StyledAddButton>
 	);
+};
+
+interface handleClickProps {
+	setFetchInfo: (value: any) => void;
+	currentUserId: string;
+	id: string;
+}
+
+const handleClick = async ({
+	setFetchInfo,
+	currentUserId,
+	id
+}: handleClickProps) => {
+	await setFetchInfo({
+		url: USERS_URLS.ADD_TO_LIST + currentUserId,
+		options: {
+			method: METHODS.POST,
+			body: JSON.stringify({ id }),
+			headers: HEADERS
+		}
+	});
 };
 
 export default AddToListButton;

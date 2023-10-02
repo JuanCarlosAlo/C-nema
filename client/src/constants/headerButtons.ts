@@ -16,11 +16,6 @@ export const HEADER_BUTTONS = {
 			_id: v4(),
 			URL: '/shows',
 			TEXT: 'Shows'
-		},
-		{
-			_id: v4(),
-			URL: '/my-list',
-			TEXT: 'My List'
 		}
 	]
 };

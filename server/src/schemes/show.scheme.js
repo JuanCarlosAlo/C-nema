@@ -31,7 +31,8 @@ const ShowScheme = mongoose.Schema(
                 _id: String,
                 episodes: [ShowItemSchema],
             }
-        ]
+        ],
+        views: Number
 
     },
     {

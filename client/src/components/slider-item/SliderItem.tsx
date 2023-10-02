@@ -22,7 +22,6 @@ interface SliderItemProps {
 
 const SliderItem = ({ mediaItem, margin }: SliderItemProps) => {
 	if (!mediaItem) return <p>Loading</p>;
-	const media = getMediaProps(mediaItem);
 
 	return (
 		<StyledSliderItem margin={margin}>
@@ -39,7 +38,7 @@ const SliderItem = ({ mediaItem, margin }: SliderItemProps) => {
 			<StyledImgItem src={mediaItem.cover} alt='cover' />
 			<StyledInfoContainer>
 				<StyledInfoHover>
-					<PlayButton media={media} index={0} />
+					<PlayButton mediaItem={mediaItem} index={0} />
 					<AddToListButton id={mediaItem._id} />
 					<MoreInfoButton mediaItem={mediaItem} />
 				</StyledInfoHover>

@@ -26,7 +26,7 @@ const StyledHeaderContainer = styled.div`
 const StyledMenu = styled.ul`
 	display: flex;
 	align-items: center;
-	gap: 2rem;
+	gap: 1rem;
 `;
 
 export { StyledHeader, StyledHeaderContainer, StyledMenu };

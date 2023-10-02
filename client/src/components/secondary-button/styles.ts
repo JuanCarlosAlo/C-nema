@@ -28,7 +28,7 @@ const StyledButton = styled.button<StyledButtonProps>`
 	padding-bottom: 0.5rem;
 	font-weight: ${MEASUREMENTS.FONTS_WEIGHT.NORMAL};
 	font-size: ${MEASUREMENTS.FONTS_SIZE.SUBTITLES.MOBILE};
-	margin-bottom: 1rem;
+	/* margin-bottom: 1rem; */
 	cursor: pointer;
 	&:hover {
 		color: ${COLORS.MAIN_HOVER};

@@ -19,7 +19,7 @@ const Shows = () => {
 				text={'Tv Shows'}
 			/>
 			{SHOWS_PAGE_URLS.map(item => (
-				<Slider url={item.url} title={item.sliderTitle} />
+				<Slider url={item.url} title={item.sliderTitle} key={item.id} />
 			))}
 		</PageComponent>
 	);

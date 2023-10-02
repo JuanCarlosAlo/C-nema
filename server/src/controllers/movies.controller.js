@@ -55,6 +55,18 @@ controller.createMovie = async (req, res) => {
   }
 };
 
+controller.addView = async (req, res) => {
+  try {
+    const movieToUpdate = await MovieModel.findById(req.body.id);
+    movieToUpdate.views += 1;
+    await movieToUpdate.save();
+
+    res.status(200).send({ message: "Movie updated successfully" });
+  } catch (error) {
+    res.status(500).send({ error: "Error al leer la base de datos" });
+  }
+};
+
 
 
 

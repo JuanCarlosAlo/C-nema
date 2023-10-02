@@ -16,17 +16,9 @@ const ListPage = () => {
 	const authContext = useContext(AuthContext);
 	const { currentUser, loadingFirebase } = authContext || {};
 
-	const { data, loading, setFetchInfo } = useFetch<MediaItem[]>({
+	const { data, loading } = useFetch<MediaItem[]>({
 		url: USERS_URLS.GET_LIST_ITEMS + currentUser?.uid
 	});
-
-	useEffect(() => {
-		if (currentUser) {
-			setFetchInfo({
-				url: USERS_URLS.GET_LIST_ITEMS + currentUser.uid
-			});
-		}
-	}, [currentUser, setFetchInfo]);
 
 	if (loadingFirebase || loading) return <p>Loading</p>;
 	if (!currentUser) return <Navigate to={'/register'} />;

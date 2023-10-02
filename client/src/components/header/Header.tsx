@@ -7,6 +7,7 @@ import { COLORS } from '../../constants/colors';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/Auth.context';
 import Icon from '../icon/Icon';
+import SecondaryButton from '../secondary-button/SecondaryButton';
 const Header = () => {
 	const authContext = useContext(AuthContext);
 	const { currentUser } = authContext || {};
@@ -17,6 +18,20 @@ const Header = () => {
 				{currentUser ? (
 					<nav>
 						<StyledMenu>
+							<Link to={'/search'}>
+								<li>
+									<Icon img={'/images/search.svg'} alt='gear icon' />
+								</li>
+							</Link>
+							<li>
+								<SecondaryButton
+									align={MEASUREMENTS.ALIGN.CENTER}
+									color={COLORS.MAIN}
+									url={'/my-list'}
+									text={'My List'}
+									border={false}
+								/>
+							</li>
 							<Link to={'/profile'}>
 								<li>
 									<Icon img={'/images/gear.svg'} alt='gear icon' />
