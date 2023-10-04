@@ -2,7 +2,8 @@ const BASE = 'http://localhost:3000/';
 
 export const ALL_ITEMS_URLS = {
 	ALL_ITEMS: BASE + 'all/all-items',
-	ALL_TRENDING: BASE + 'all/trending'
+	ALL_TRENDING: BASE + 'all/trending',
+	ALL_SEARCH: BASE + 'all/search/'
 };
 export const SHOWS_URLS = {
 	ALL_SHOWS: BASE + 'shows/all-shows',

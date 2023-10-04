@@ -50,6 +50,28 @@ controller.getTrending = async (req, res) => {
         res.status(500).send({ error: "Error al leer la base de datos" });
     }
 };
+controller.getSearch = async (req, res) => {
+    try {
+        const keyword = req.params.key
+
+        const allShowsPromises = ShowModel.find({ title: new RegExp(keyword, "i") });
+        const allMoviesPromises = MovieModel.find({ title: new RegExp(keyword, "i") });
+        const [allListedShows, allListedMovies] = await Promise.all([
+            allShowsPromises,
+            allMoviesPromises,
+        ]);
+
+        const filteredListedShows = allListedShows.filter((show) => show !== null);
+        const filteredListedMovies = allListedMovies.filter((movie) => movie !== null);
+
+        const allItems = [...filteredListedMovies, ...filteredListedShows];
+
+
+        res.status(200).send(allItems);
+    } catch (error) {
+        res.status(500).send({ error: "Error al leer la base de datos" });
+    }
+};
 
 
 module.exports = controller;

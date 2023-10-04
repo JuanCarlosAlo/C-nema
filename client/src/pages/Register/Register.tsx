@@ -30,6 +30,7 @@ import { COLORS } from '../../constants/colors';
 import { MEASUREMENTS } from '../../constants/measurements';
 import Text from '../../components/text/Text';
 import { USER_DEFAULT_VALUES } from '../../constants/userDefaultValues';
+import Loading from '../../components/loading/Loading';
 
 type Inputs = {
 	email: string;
@@ -51,7 +52,7 @@ const Register = () => {
 	}) as { data: any[]; loading: any; error: any; setFetchInfo: () => void };
 
 	if (currentUser) return <Navigate to={'/'} />;
-	if (loading) return <h2>Loading</h2>;
+	if (loading) return <Loading />;
 	if (error) return <h2>Error</h2>;
 	return (
 		<PageComponent isBack={true}>

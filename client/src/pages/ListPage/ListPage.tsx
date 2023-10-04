@@ -11,6 +11,7 @@ import { MEASUREMENTS } from '../../constants/measurements';
 import { COLORS } from '../../constants/colors';
 import Secondaryheader from '../../components/secondary-header/SecondaryHeader';
 import PageColumnsContainer from '../../components/page-columns-container/PageColumnsContainer';
+import Loading from '../../components/loading/Loading';
 
 const ListPage = () => {
 	const authContext = useContext(AuthContext);
@@ -20,7 +21,7 @@ const ListPage = () => {
 		url: USERS_URLS.GET_LIST_ITEMS + currentUser?.uid
 	});
 
-	if (loadingFirebase || loading) return <p>Loading</p>;
+	if (loadingFirebase || loading) return <Loading />;
 	if (!currentUser) return <Navigate to={'/register'} />;
 
 	if (!data) return <p>error</p>;

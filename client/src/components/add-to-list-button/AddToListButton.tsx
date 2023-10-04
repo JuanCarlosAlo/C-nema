@@ -10,6 +10,7 @@ import { StyledAddButton } from './styles';
 import { Navigate } from 'react-router-dom';
 import { HEADERS } from '../../constants/headers';
 import { METHODS } from '../../constants/methods';
+import Loading from '../loading/Loading';
 
 interface AddToListButtonProps {
 	id: string;
@@ -33,7 +34,7 @@ const AddToListButton = ({ id }: AddToListButtonProps) => {
 		url: USERS_URLS.GET_LIST + currentUser?.uid
 	});
 
-	if (loadingFirebase || loading) return <p>Loading</p>;
+	if (loadingFirebase || loading) return <Loading />;
 	if (!currentUser) return <Navigate to={'/register'} />;
 
 	const isListed = data?.listedItems.some(item => item._id === id);
