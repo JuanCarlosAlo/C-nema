@@ -38,10 +38,37 @@ const StyledDescriptionContainer = styled.div`
 	}
 `;
 
+const StyledSelect = styled.select`
+	width: 200px;
+	padding: 8px;
+	border: none;
+
+	background-color: ${COLORS.MAIN};
+	color: ${COLORS.WHITE};
+	font-size: 1rem;
+	&:focus {
+		outline: none;
+	}
+
+	& option {
+		background-color: ${COLORS.MAIN};
+		color: ${COLORS.WHITE};
+		font-size: 1rem;
+		&:hover {
+			background-color: ${COLORS.WHITE};
+			color: ${COLORS.MAIN};
+		}
+		&:focus {
+			outline: none;
+		}
+	}
+`;
+
 export {
 	StyledSeasonImg,
 	StyledEpisodeContainer,
 	StyledDescriptionContainer,
 	StyledTitleSelectContainer,
-	StyledSeasonContainer
+	StyledSeasonContainer,
+	StyledSelect
 };

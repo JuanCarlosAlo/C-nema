@@ -44,7 +44,7 @@ controller.getTrending = async (req, res) => {
 
         const allItems = [...filteredListedMovies, ...filteredListedShows];
         allItems.sort((a, b) => b.views - a.views);
-
+        console.log(allItems)
         res.status(200).send(allItems);
     } catch (error) {
         res.status(500).send({ error: "Error al leer la base de datos" });

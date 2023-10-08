@@ -1,15 +1,15 @@
 import styled from 'styled-components';
 import { MEASUREMENTS } from '../../constants/measurements';
-import { COLORS } from '../../constants/colors';
 
 interface StyledTitleProps {
 	align?: string;
 	fontSize?: keyof typeof MEASUREMENTS.FONTS_SIZE;
 	margin?: string;
+	color?: string;
 }
 
 const StyledTitle = styled.p<StyledTitleProps>`
-	color: ${COLORS.WHITE};
+	color: ${({ color }) => color};
 	text-align: ${({ align }) => {
 		if (align) {
 			return align;

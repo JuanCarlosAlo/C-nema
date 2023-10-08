@@ -10,9 +10,14 @@ interface TitletProps {
 	fontSize?: keyof typeof MEASUREMENTS.FONTS_SIZE;
 }
 
-const Title = ({ text, fontSize, align, margin }: TitletProps) => {
+const Title = ({ text, fontSize, align, margin, color }: TitletProps) => {
 	return (
-		<StyledTitle align={align} fontSize={fontSize} margin={margin}>
+		<StyledTitle
+			align={align}
+			fontSize={fontSize}
+			margin={margin}
+			color={color}
+		>
 			{text}
 		</StyledTitle>
 	);

@@ -7,10 +7,11 @@ import { useFetch } from '../../hooks/useFetch';
 import Icon from '../icon/Icon';
 import Text from '../text/Text';
 import { StyledAddButton } from './styles';
-import { Navigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { HEADERS } from '../../constants/headers';
 import { METHODS } from '../../constants/methods';
 import Loading from '../loading/Loading';
+import { setFetchInfo } from '../../interfaces/setFetchInfo';
 
 interface AddToListButtonProps {
 	id: string;
@@ -29,21 +30,23 @@ interface UserListData {
 const AddToListButton = ({ id }: AddToListButtonProps) => {
 	const authContext = useContext(AuthContext);
 	const { currentUser, loadingFirebase } = authContext || {};
+	const navigate = useNavigate();
 
 	const { data, loading, setFetchInfo } = useFetch<UserListData>({
 		url: USERS_URLS.GET_LIST + currentUser?.uid
 	});
 
 	if (loadingFirebase || loading) return <Loading />;
-	if (!currentUser) return <Navigate to={'/register'} />;
-
 	const isListed = data?.listedItems.some(item => item._id === id);
-
 	return (
 		<StyledAddButton
-			onClick={() =>
-				handleClick({ setFetchInfo, currentUserId: currentUser.uid, id })
-			}
+			onClick={() => {
+				if (!currentUser) {
+					navigate('/register');
+				} else {
+					handleClick({ setFetchInfo, currentUserId: currentUser.uid, id });
+				}
+			}}
 		>
 			<Icon img='/images/plus-solid.svg' alt='add icon' />
 			<Text
@@ -59,7 +62,7 @@ const AddToListButton = ({ id }: AddToListButtonProps) => {
 };
 
 interface handleClickProps {
-	setFetchInfo: (value: any) => void;
+	setFetchInfo: (value: setFetchInfo) => void;
 	currentUserId: string;
 	id: string;
 }

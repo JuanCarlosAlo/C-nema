@@ -8,6 +8,7 @@ import {
 	StyledEpisodeContainer,
 	StyledSeasonContainer,
 	StyledSeasonImg,
+	StyledSelect,
 	StyledTitleSelectContainer
 } from './styles';
 import { useNavigate } from 'react-router-dom';
@@ -25,7 +26,7 @@ const Seasons = ({ media }: MediaProps) => {
 	const navigate = useNavigate();
 
 	const allMedia = getMediaSeasonsToPlay(media);
-
+	console.log(seasonActive);
 	return (
 		<StyledSeasonContainer>
 			<StyledTitleSelectContainer>
@@ -48,14 +49,15 @@ const Seasons = ({ media }: MediaProps) => {
 					/>
 				</div>
 				{media.seasons && media.seasons.length > 1 && (
-					<select>
+					<StyledSelect
+						onChange={e => setSeasonActive(parseInt(e.target.value, 10))}
+					>
 						{media.seasons?.map((season, index) => (
-							<option
-								onClick={() => setSeasonActive(index)}
-								key={season._id}
-							>{`Season ${index}`}</option>
+							<option key={season._id} value={index}>
+								{`Season ${index + 1}`}
+							</option>
 						))}
-					</select>
+					</StyledSelect>
 				)}
 			</StyledTitleSelectContainer>
 			<div>

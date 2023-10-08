@@ -6,6 +6,7 @@ import { MediaItem } from '../../interfaces/mediaItem';
 import SliderItem from '../../components/slider-item/SliderItem';
 import PageColumnsContainer from '../../components/page-columns-container/PageColumnsContainer';
 import Loading from '../../components/loading/Loading';
+import { setFetchInfo } from '../../interfaces/setFetchInfo';
 
 interface ObjectData {
 	mediaItem?: MediaItem;
@@ -42,7 +43,7 @@ const Search = () => {
 
 interface handleChangeProps {
 	e: React.BaseSyntheticEvent;
-	setFetchInfo: (value: any) => void;
+	setFetchInfo: (value: setFetchInfo) => void;
 }
 const handleChange = async ({ e, setFetchInfo }: handleChangeProps) => {
 	const keyword = e.target.value;

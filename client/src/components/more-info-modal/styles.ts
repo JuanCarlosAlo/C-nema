@@ -17,6 +17,7 @@ const StyledCrossContainer = styled.div`
 	background-color: ${COLORS.MAIN};
 	padding: 8px;
 	border-radius: 50%;
+	cursor: pointer;
 `;
 const StyledCoverContainer = styled.div`
 	position: relative;

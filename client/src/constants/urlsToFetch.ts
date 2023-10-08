@@ -7,8 +7,8 @@ export const HOME_URLS = [
 	{ id: v4(), sliderTitle: 'Movies', url: MOVIES_URLS.ALL_MOVIES }
 ];
 export const MOVIES_PAGE_URLS = [
-	{ id: v4(), sliderTitle: 'Movies', url: MOVIES_URLS.ALL_MOVIES }
+	{ id: v4(), sliderTitle: 'Trending Movies', url: MOVIES_URLS.ALL_MOVIES }
 ];
 export const SHOWS_PAGE_URLS = [
-	{ id: v4(), sliderTitle: 'Movies', url: SHOWS_URLS.ALL_SHOWS }
+	{ id: v4(), sliderTitle: 'Trending Tv Shows', url: SHOWS_URLS.ALL_SHOWS }
 ];

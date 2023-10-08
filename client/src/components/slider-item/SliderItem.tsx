@@ -29,7 +29,7 @@ const SliderItem = ({ mediaItem, margin }: SliderItemProps) => {
 			<StyledTitleContainer>
 				<Text
 					align={MEASUREMENTS.ALIGN.LEFT}
-					color={COLORS.MAIN}
+					color={COLORS.WHITE}
 					fontSize={MEASUREMENTS.FONTS_SIZE.KEY.TEXT}
 					margin={'auto'}
 					nofullwidth={false}

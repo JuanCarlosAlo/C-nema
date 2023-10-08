@@ -10,6 +10,7 @@ import { METHODS } from '../../constants/methods';
 import { HEADERS } from '../../constants/headers';
 import { MediaItem } from '../../interfaces/mediaItem';
 import { getPlayButtonProps } from '../../utils/getPlayButtonProps';
+import { setFetchInfo } from '../../interfaces/setFetchInfo';
 
 interface MoreInfoModalProps {
 	mediaItem: MediaItem;
@@ -51,7 +52,7 @@ interface handleClickProps {
 	}[];
 	index: number;
 	setValue?: (value: any) => void;
-	setFetchInfo: (value: any) => void;
+	setFetchInfo: (value: setFetchInfo) => void;
 }
 
 const handleClick = async ({

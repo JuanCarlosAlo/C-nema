@@ -44,6 +44,7 @@ const Login = () => {
 				align={MEASUREMENTS.ALIGN.CENTER}
 				fontSize={MEASUREMENTS.FONTS_SIZE.KEY.TITLE}
 				text={'Login'}
+				color={COLORS.MAIN}
 			/>
 			<SocialLogin setFetchInfo={setFetchInfo} />
 			<form
@@ -95,7 +96,7 @@ const Login = () => {
 interface OnSubmitProps {
 	formData: Inputs;
 	e: React.BaseSyntheticEvent;
-	navigate: (value: any) => void;
+	navigate: (value: string) => void;
 	setFirebaseErrors: (error: any) => void;
 }
 

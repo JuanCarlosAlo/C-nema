@@ -7,21 +7,28 @@ import { METHODS } from '../../constants/methods';
 import { getInitialUsername } from '../../utils/getInitialUsername';
 import { USER_DEFAULT_VALUES } from '../../constants/userDefaultValues';
 import { SetFetchInfoFunction } from '../../types/setFetchInfo';
+import { setFetchInfo } from '../../interfaces/setFetchInfo';
 
 interface SocialLoginProps {
-	setFetchInfo: SetFetchInfoFunction;
+	setFetchInfo: (value: setFetchInfo) => void;
 }
 
 const SocialLogin = ({ setFetchInfo }: SocialLoginProps) => {
 	return (
-		<StyledButton onClick={() => registerWithGoogle(setFetchInfo)}>
+		<StyledButton onClick={() => registerWithGoogle({ setFetchInfo })}>
 			Continue in with Google
 			<StyledButtonIcon src={'/images/google-tile.svg'} alt='Google icon' />
 		</StyledButton>
 	);
 };
 
-const registerWithGoogle = async (setFetchInfo: SetFetchInfoFunction) => {
+interface RegisterWithGoogleProps {
+	setFetchInfo: (value: setFetchInfo) => void;
+}
+
+const registerWithGoogle = async ({
+	setFetchInfo
+}: RegisterWithGoogleProps) => {
 	const provider = new GoogleAuthProvider();
 
 	try {
@@ -42,7 +49,9 @@ const registerWithGoogle = async (setFetchInfo: SetFetchInfoFunction) => {
 				}),
 				headers: HEADERS
 			},
-			navigateTo: '/'
+			navigateTo: {
+				url: '/'
+			}
 		});
 	} catch (error) {
 		console.log(error);

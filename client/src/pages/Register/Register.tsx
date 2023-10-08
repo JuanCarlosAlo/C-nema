@@ -31,6 +31,8 @@ import { MEASUREMENTS } from '../../constants/measurements';
 import Text from '../../components/text/Text';
 import { USER_DEFAULT_VALUES } from '../../constants/userDefaultValues';
 import Loading from '../../components/loading/Loading';
+import Title from '../../components/title/Title';
+import { setFetchInfo } from '../../interfaces/setFetchInfo';
 
 type Inputs = {
 	email: string;
@@ -49,7 +51,12 @@ const Register = () => {
 
 	const { data, loading, error, setFetchInfo } = useFetch({
 		url: USERS_URLS.ALL
-	}) as { data: any[]; loading: any; error: any; setFetchInfo: () => void };
+	}) as {
+		data: any[];
+		loading: boolean;
+		error: boolean;
+		setFetchInfo: (value: setFetchInfo) => void;
+	};
 
 	if (currentUser) return <Navigate to={'/'} />;
 	if (loading) return <Loading />;
@@ -57,7 +64,12 @@ const Register = () => {
 	return (
 		<PageComponent isBack={true}>
 			<Secondaryheader url={'/'} />
-			<h2>REGISTER</h2>
+			<Title
+				color={COLORS.MAIN}
+				text={'Register'}
+				align={MEASUREMENTS.ALIGN.CENTER}
+				fontSize={MEASUREMENTS.FONTS_SIZE.KEY.TITLE}
+			/>
 			<SocialLogin setFetchInfo={setFetchInfo} />
 
 			<form
@@ -109,8 +121,8 @@ const Register = () => {
 interface OnSubmitProps {
 	formData: Inputs;
 	e: React.BaseSyntheticEvent;
-	setFetchInfo: (value: any) => void;
-	setFirebaseErrors: (error: any) => void;
+	setFetchInfo: (value: setFetchInfo) => void;
+	setFirebaseErrors: (error: string) => void;
 	data: any[] | undefined;
 }
 const onSubmit = async ({
