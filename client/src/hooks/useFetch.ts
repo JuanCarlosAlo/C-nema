@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { NavigateFunction, useNavigate } from 'react-router-dom';
 
 interface FetchInfo {
 	url: string;
@@ -20,6 +20,27 @@ interface UseFetchResult<T> extends FetchStatus<T> {
 	setFetchInfo: (fetchInfo: FetchInfo) => void;
 }
 
+const fetchData = async <T>(
+	fetchInfo: FetchInfo,
+	setFetchStatus: (fetchStatus: FetchStatus<T>) => void,
+	signal: AbortSignal,
+	navigate: NavigateFunction
+) => {
+	if (!fetchInfo) return;
+
+	const { url, options, navigateTo } = fetchInfo;
+	console.log(url);
+	try {
+		const response = await fetch(url, { ...options, signal });
+		const data = await response.json();
+		setFetchStatus({ data, loading: false, error: undefined });
+
+		if (navigateTo) navigate(navigateTo.url, { state: navigateTo.state });
+	} catch (err) {
+		setFetchStatus({ data: undefined, loading: false, error: err });
+	}
+};
+
 export const useFetch = <T>(initialFetch: FetchInfo): UseFetchResult<T> => {
 	const [fetchStatus, setFetchStatus] = useState<FetchStatus<T>>({
 		data: undefined,
@@ -37,25 +58,4 @@ export const useFetch = <T>(initialFetch: FetchInfo): UseFetchResult<T> => {
 	}, [fetchInfo, navigate]);
 
 	return { ...fetchStatus, setFetchInfo };
-};
-
-const fetchData = async <T>(
-	fetchInfo: FetchInfo,
-	setFetchStatus: (fetchStatus: FetchStatus<T>) => void,
-	signal: AbortSignal,
-	navigate: ReturnType<typeof useNavigate>
-) => {
-	if (!fetchInfo) return;
-
-	const { url, options, navigateTo } = fetchInfo;
-
-	try {
-		const response = await fetch(url, { ...options, signal });
-		const data = await response.json();
-		setFetchStatus({ data, loading: false, error: undefined });
-
-		if (navigateTo) navigate(navigateTo.url, { state: navigateTo.state });
-	} catch (err) {
-		setFetchStatus({ data: undefined, loading: false, error: err });
-	}
 };

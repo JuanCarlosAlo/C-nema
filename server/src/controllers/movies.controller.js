@@ -67,7 +67,45 @@ controller.addView = async (req, res) => {
   }
 };
 
+controller.getTrending = async (req, res) => {
+  try {
 
+
+    const allListedMoviesPromises = await MovieModel.find()
+
+    const [allListedMovies] = await Promise.all([
+      Promise.all(allListedMoviesPromises),
+    ]);
+
+    const filteredListedMovies = allListedMovies.filter((movie) => movie !== null);
+
+    const allItems = [...filteredListedMovies,];
+    allItems.sort((a, b) => b.views - a.views);
+    res.status(200).send(allItems);
+  } catch (error) {
+    res.status(500).send({ error: "Error al leer la base de datos" });
+  }
+};
+
+controller.getNew = async (req, res) => {
+  try {
+
+
+    const allListedMoviesPromises = await MovieModel.find()
+
+    const [allListedMovies] = await Promise.all([
+      Promise.all(allListedMoviesPromises),
+    ]);
+
+    const filteredListedMovies = allListedMovies.filter((movie) => movie !== null);
+
+    const allItems = [...filteredListedMovies,];
+    allItems.sort((a, b) => b.info.dateCreated - a.info.dateCreated);
+    res.status(200).send(allItems);
+  } catch (error) {
+    res.status(500).send({ error: "Error al leer la base de datos" });
+  }
+};
 
 
 module.exports = controller;

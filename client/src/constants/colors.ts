@@ -6,6 +6,7 @@ export const COLORS = {
 	WHITE: '#FFF',
 	UNACTIVE: '#3D3D3D',
 	ACTIVE: '#505050',
+	RED: '#D11F1F',
 	BLACK_TRANSPARENT: 'rgb(0,0,0,0.6)'
 };
 export const SECONDARY_COLORS = {

@@ -11,15 +11,19 @@ import { HEADERS } from '../../constants/headers';
 import { MediaItem } from '../../interfaces/mediaItem';
 import { getPlayButtonProps } from '../../utils/getPlayButtonProps';
 import { setFetchInfo } from '../../interfaces/setFetchInfo';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/Auth.context';
+import { CurrentUser } from '../../interfaces/user';
 
 interface MoreInfoModalProps {
 	mediaItem: MediaItem;
-
 	index: number;
 	setValue?: (value: any) => void;
 }
 
 const PlayButton = ({ mediaItem, index, setValue }: MoreInfoModalProps) => {
+	const authContext = useContext(AuthContext);
+	const { currentUser } = authContext || {};
 	const { setFetchInfo } = useFetch({
 		url: ''
 	});
@@ -28,7 +32,14 @@ const PlayButton = ({ mediaItem, index, setValue }: MoreInfoModalProps) => {
 	return (
 		<StyledPlayButton
 			onClick={() =>
-				handleClick({ setValue, index, setFetchInfo, mediaItem, media })
+				handleClick({
+					setValue,
+					index,
+					setFetchInfo,
+					mediaItem,
+					media,
+					currentUser
+				})
 			}
 		>
 			<Icon img='/images/play-solid.svg' alt='play button' />
@@ -53,6 +64,7 @@ interface handleClickProps {
 	index: number;
 	setValue?: (value: any) => void;
 	setFetchInfo: (value: setFetchInfo) => void;
+	currentUser: CurrentUser | undefined | null;
 }
 
 const handleClick = async ({
@@ -60,13 +72,24 @@ const handleClick = async ({
 	index,
 	setFetchInfo,
 	mediaItem,
-	media
+	media,
+	currentUser
 }: handleClickProps) => {
-	console.log(media);
 	const urlToFetch =
 		mediaItem.type === 'movie' ? MOVIES_URLS.ADD_VIEW : SHOWS_URLS.ADD_VIEW;
+
 	try {
-		await setFetchInfo({
+		if (currentUser) {
+			setFetchInfo({
+				url: USERS_URLS.ADD_TO_WATCHED + currentUser.uid,
+				options: {
+					method: METHODS.POST,
+					body: JSON.stringify({ id: mediaItem._id }),
+					headers: HEADERS
+				}
+			});
+		}
+		setFetchInfo({
 			url: urlToFetch,
 			options: {
 				method: METHODS.POST,
@@ -78,9 +101,10 @@ const handleClick = async ({
 				state: { media, index }
 			}
 		});
+
 		if (setValue) setValue(null);
 	} catch (error) {
-		console.log(error);
+		console.error(error);
 	}
 };
 

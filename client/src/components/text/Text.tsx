@@ -3,7 +3,7 @@ import { StyledText } from './styles';
 
 interface TextProps {
 	text?: string | number;
-	fontSize?: keyof typeof MEASUREMENTS.FONTS_SIZE;
+	fontSize: keyof typeof MEASUREMENTS.FONTS_SIZE;
 	align?: string;
 	margin?: string;
 	nofullwidth?: boolean;

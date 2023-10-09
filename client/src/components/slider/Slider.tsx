@@ -3,7 +3,8 @@ import { MEASUREMENTS } from '../../constants/measurements';
 import { SHOWS_URLS } from '../../constants/urls';
 import { useFetch } from '../../hooks/useFetch';
 import { MediaItem } from '../../interfaces/mediaItem';
-import Loading from '../loading/Loading';
+import LoadingCompact from '../loading-compact/LoadingCompact';
+
 import SliderItem from '../slider-item/SliderItem';
 import Title from '../title/Title';
 import { SliderContainer, StyledSlider } from './styles';
@@ -22,10 +23,9 @@ interface SliderProps {
 
 const Slider = ({ url, title }: SliderProps) => {
 	const { loading, error, data } = useFetch<ApiResponse>({ url });
-	if (loading) return <Loading />;
+	if (loading) return <LoadingCompact />;
 	if (error) return <p>error</p>;
 
-	console.log(data);
 	return (
 		<SliderContainer>
 			<Title

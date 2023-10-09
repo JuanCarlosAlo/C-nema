@@ -96,6 +96,52 @@ controller.addView = async (req, res) => {
   }
 };
 
+controller.getTrending = async (req, res) => {
+  try {
+
+    const allListedShowsPromises =
+      await ShowModel.find();
+
+
+
+    const [allListedShows] = await Promise.all([
+      Promise.all(allListedShowsPromises),
+
+    ]);
+
+    const filteredListedShows = allListedShows.filter((show) => show !== null);
+
+
+    const allItems = [...filteredListedShows];
+    allItems.sort((a, b) => b.views - a.views);
+    res.status(200).send(allItems);
+  } catch (error) {
+    res.status(500).send({ error: "Error al leer la base de datos" });
+  }
+};
+controller.getNew = async (req, res) => {
+  try {
+
+    const allListedShowsPromises =
+      await ShowModel.find();
+
+
+
+    const [allListedShows] = await Promise.all([
+      Promise.all(allListedShowsPromises),
+
+    ]);
+
+    const filteredListedShows = allListedShows.filter((show) => show !== null);
+
+
+    const allItems = [...filteredListedShows];
+    allItems.sort((a, b) => b.info.dateCreated - a.info.dateCreated);
+    res.status(200).send(allItems);
+  } catch (error) {
+    res.status(500).send({ error: "Error al leer la base de datos" });
+  }
+};
 
 
 module.exports = controller;

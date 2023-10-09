@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const WatchedItemsScheme = mongoose.Schema(
     {
         _id: String,
+        wathedLastTime: Number
 
     }
 )

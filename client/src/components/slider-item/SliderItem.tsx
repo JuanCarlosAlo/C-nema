@@ -1,9 +1,9 @@
 import { COLORS } from '../../constants/colors';
 import { MEASUREMENTS } from '../../constants/measurements';
 import { MediaItem } from '../../interfaces/mediaItem';
-import { getMediaProps } from '../../utils/getMediaProps';
+
 import AddToListButton from '../add-to-list-button/AddToListButton';
-import Loading from '../loading/Loading';
+
 import MoreInfoButton from '../more-info-button/MoreInfoButton';
 import PlayButton from '../play-button/PlayButton';
 import Text from '../text/Text';
@@ -17,13 +17,11 @@ import {
 import { v4 } from 'uuid';
 
 interface SliderItemProps {
-	mediaItem?: MediaItem;
+	mediaItem: MediaItem;
 	margin: number | string;
 }
 
 const SliderItem = ({ mediaItem, margin }: SliderItemProps) => {
-	if (!mediaItem) return <Loading />;
-
 	return (
 		<StyledSliderItem margin={margin}>
 			<StyledTitleContainer>

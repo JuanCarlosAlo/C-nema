@@ -8,14 +8,18 @@ import { COLORS } from '../../constants/colors';
 import PrimaryButton from '../../components/primary-button/PrimaryButton';
 import { signOut } from 'firebase/auth';
 import { auth } from '../../config/firebase.config';
+import { useModalContext } from '../../context/Modal.context';
+import DeleteAccountModal from '../../components/delete-account-modal/DeleteAccountModal';
+import { StlyedProfieInfo, StyledButtonsContainer } from './styles';
 
 const Profile = () => {
 	const authContext = useContext(AuthContext);
 	const { currentUser } = authContext || {};
-	if (!currentUser) <Navigate to={'/'} />;
+	const { setContent } = useModalContext();
+	if (!currentUser) return <Navigate to={'/'} />;
 	return (
 		<PageComponent isBack>
-			<div>
+			<StlyedProfieInfo>
 				<Text
 					align={MEASUREMENTS.ALIGN.LEFT}
 					color={COLORS.MAIN}
@@ -32,16 +36,31 @@ const Profile = () => {
 					nofullwidth
 					text={`Email : ${currentUser?.email}`}
 				/>
-			</div>
-			<PrimaryButton
-				align={MEASUREMENTS.ALIGN.CENTER}
-				color={COLORS.WHITE}
-				bgcolor={COLORS.UNACTIVE}
-				setState={signOut}
-				setValue={auth}
-				text={'Logout'}
-				url={'/'}
-			/>
+			</StlyedProfieInfo>
+			<StyledButtonsContainer>
+				<PrimaryButton
+					align={MEASUREMENTS.ALIGN.CENTER}
+					color={COLORS.WHITE}
+					bgcolor={COLORS.MAIN}
+					setState={signOut}
+					setValue={auth}
+					text={'Logout'}
+					url={'/'}
+				/>
+				<PrimaryButton
+					align={MEASUREMENTS.ALIGN.CENTER}
+					color={COLORS.WHITE}
+					bgcolor={COLORS.MAIN}
+					setState={setContent}
+					setValue={
+						<DeleteAccountModal
+							setContent={setContent}
+							currentUser={currentUser}
+						/>
+					}
+					text={'Delete Account'}
+				/>
+			</StyledButtonsContainer>
 		</PageComponent>
 	);
 };

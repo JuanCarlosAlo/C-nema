@@ -3,7 +3,7 @@ import { MEASUREMENTS } from '../../constants/measurements';
 
 interface StyledTexteProps {
 	text?: string;
-	fontSize?: keyof typeof MEASUREMENTS.FONTS_SIZE;
+	fontSize: keyof typeof MEASUREMENTS.FONTS_SIZE;
 	align?: string;
 	margin?: string;
 	nofullwidth?: boolean;

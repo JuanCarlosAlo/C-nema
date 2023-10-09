@@ -4,6 +4,7 @@ const ListedModel = require("../schemes/listed.scheme");
 const { default: mongoose } = require("mongoose");
 const ShowModel = require("../schemes/show.scheme");
 const MovieModel = require("../schemes/movies.scheme");
+const WatchedModel = require("../schemes/watched.scheme");
 
 const controller = {};
 
@@ -30,7 +31,7 @@ controller.getUserId = async (req, res) => {
 controller.createUser = async (req, res) => {
   try {
     const { userName, email, type, _id, savedMedia, watched } = req.body;
-    console.log(req.body)
+
     const newDate = Date.now();
 
     const newUser = await new UserModel({
@@ -76,6 +77,7 @@ controller.deleteUser = async (req, res) => {
   try {
     const userId = req.params.id;
     const currentUser = await UserModel.findById(userId);
+    console.log(currentUser)
     await UserModel.findByIdAndRemove(currentUser._id);
     await currentUser.markModified("._id");
     res.status(200).json({ message: "User elimanated" });
@@ -90,15 +92,11 @@ controller.addToList = async (req, res) => {
   try {
     const userId = req.params.id;
     const itemToAdd = req.body.id;
-
-    // Buscar al usuario por su ID
     const currentUser = await UserModel.findById(userId);
-
-    // Buscar la lista asociada al usuario por su ID
     let listCollection = await ListedModel.findOne({ userId: userId });
 
     if (!listCollection) {
-      // Si no se encuentra la lista, crear una nueva
+
       listCollection = await ListedModel.create({
         _id: new mongoose.Types.ObjectId(),
         userId,
@@ -107,37 +105,83 @@ controller.addToList = async (req, res) => {
       });
     }
 
-    // Verificar si el elemento ya está en la lista
     const existingIndex = listCollection.listedItems.findIndex(
       (item) => item._id.toString() === itemToAdd
     );
 
     if (existingIndex !== -1) {
-      // Si el elemento ya está en la lista, eliminarlo
+
       listCollection.listedItems.splice(existingIndex, 1);
     } else {
-      // Si el elemento no está en la lista, agregarlo
+
       listCollection.listedItems.unshift({
         _id: itemToAdd,
         date: new Date(),
       });
     }
 
-    // Guardar la lista actualizada
     await listCollection.save();
-
-    // Verificar si la lista está en los medios guardados del usuario
     const existingListRef = currentUser.savedMedia.find(
       (listRef) => listRef.toString() === listCollection._id.toString()
     );
 
     if (!existingListRef) {
-      // Si la lista no está en los medios guardados del usuario, agregarla
+
       currentUser.savedMedia.unshift(listCollection._id);
       await currentUser.save();
     }
 
     res.status(200).send(listCollection);
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Error adding to list" });
+  }
+};
+controller.addWatched = async (req, res) => {
+
+  try {
+    const userId = req.params.id;
+    const itemWatched = req.body.id;
+    const currentUser = await UserModel.findById(userId);
+    let watchedCollection = await WatchedModel.findOne({ userId: userId });
+
+    if (!watchedCollection) {
+
+      watchedCollection = await WatchedModel.create({
+        _id: new mongoose.Types.ObjectId(),
+        userId,
+        type: 'list',
+        watchedItems: [],
+      });
+    }
+
+    const existingItem = watchedCollection.watchedItems.find(
+      (item) => item._id.toString() === itemWatched
+    );
+
+    if (existingItem) {
+
+      existingItem.wathedLastTime = new Date();
+    } else {
+
+      watchedCollection.watchedItems.unshift({
+        _id: itemWatched,
+        wathedLastTime: new Date(),
+      });
+    }
+
+    await watchedCollection.save();
+    const existingListRef = currentUser.watched.find(
+      (listRef) => listRef.toString() === watchedCollection._id.toString()
+    );
+
+    if (!existingListRef) {
+
+      currentUser.watched.unshift(watchedCollection._id);
+      await currentUser.save();
+    }
+
+    res.status(200).send({ message: 'Added succesfuly' });
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error adding to list" });

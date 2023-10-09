@@ -12,6 +12,7 @@ import { COLORS } from '../../constants/colors';
 import Secondaryheader from '../../components/secondary-header/SecondaryHeader';
 import PageColumnsContainer from '../../components/page-columns-container/PageColumnsContainer';
 import Loading from '../../components/loading/Loading';
+import Text from '../../components/text/Text';
 
 const ListPage = () => {
 	const authContext = useContext(AuthContext);
@@ -36,15 +37,22 @@ const ListPage = () => {
 				nofullwidth={false}
 				text={'My list'}
 			/>
-			<PageColumnsContainer>
-				{data.length > 0 ? (
-					data.map(item => (
+			{data.length > 0 ? (
+				<PageColumnsContainer>
+					{data.map(item => (
 						<SliderItem key={item._id} mediaItem={item} margin={'auto'} />
-					))
-				) : (
-					<p>The list is empty</p>
-				)}
-			</PageColumnsContainer>
+					))}
+				</PageColumnsContainer>
+			) : (
+				<Text
+					align={MEASUREMENTS.ALIGN.CENTER}
+					color={COLORS.MAIN}
+					fontSize={MEASUREMENTS.FONTS_SIZE.KEY.TEXT}
+					margin='auto'
+					nofullwidth
+					text={'Your list is empty'}
+				/>
+			)}
 		</PageComponent>
 	);
 };

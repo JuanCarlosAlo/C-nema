@@ -26,7 +26,7 @@ const Seasons = ({ media }: MediaProps) => {
 	const navigate = useNavigate();
 
 	const allMedia = getMediaSeasonsToPlay(media);
-	console.log(seasonActive);
+
 	return (
 		<StyledSeasonContainer>
 			<StyledTitleSelectContainer>
@@ -67,10 +67,16 @@ const Seasons = ({ media }: MediaProps) => {
 							key={episode._id}
 							onClick={() => {
 								setContent(null);
+								const episodeIndex =
+									media.seasons
+										.slice(0, seasonActive)
+										.reduce((acc, season) => acc + season.episodes.length, 0) +
+									index;
+								console.log(episodeIndex);
 								navigate('/video/' + episode._id, {
 									state: {
 										media: allMedia,
-										index
+										index: episodeIndex
 									}
 								});
 							}}

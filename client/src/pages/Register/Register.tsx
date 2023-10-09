@@ -33,6 +33,7 @@ import { USER_DEFAULT_VALUES } from '../../constants/userDefaultValues';
 import Loading from '../../components/loading/Loading';
 import Title from '../../components/title/Title';
 import { setFetchInfo } from '../../interfaces/setFetchInfo';
+import { getInitialUsername } from '../../utils/getInitialUsername';
 
 type Inputs = {
 	email: string;
@@ -135,7 +136,7 @@ const onSubmit = async ({
 	if (!data) return;
 	e.preventDefault();
 	const { email, password } = formData;
-
+	const userName = getInitialUsername(email);
 	const emailUsed = data.find(user => user.email === email);
 	if (!emailUsed) {
 		try {
@@ -151,8 +152,7 @@ const onSubmit = async ({
 					body: JSON.stringify({
 						_id: userRegistered.user.uid,
 						email,
-						artist: false,
-						userName: Date.now(),
+						userName,
 						...USER_DEFAULT_VALUES
 					}),
 					headers: HEADERS

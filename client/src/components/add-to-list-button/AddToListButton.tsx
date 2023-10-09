@@ -10,8 +10,8 @@ import { StyledAddButton } from './styles';
 import { useNavigate } from 'react-router-dom';
 import { HEADERS } from '../../constants/headers';
 import { METHODS } from '../../constants/methods';
-import Loading from '../loading/Loading';
 import { setFetchInfo } from '../../interfaces/setFetchInfo';
+import LoadingCompact from '../loading-compact/LoadingCompact';
 
 interface AddToListButtonProps {
 	id: string;
@@ -33,10 +33,10 @@ const AddToListButton = ({ id }: AddToListButtonProps) => {
 	const navigate = useNavigate();
 
 	const { data, loading, setFetchInfo } = useFetch<UserListData>({
-		url: USERS_URLS.GET_LIST + currentUser?.uid
+		url: ''
 	});
 
-	if (loadingFirebase || loading) return <Loading />;
+	if (loadingFirebase || loading) return <LoadingCompact />;
 	const isListed = data?.listedItems.some(item => item._id === id);
 	return (
 		<StyledAddButton

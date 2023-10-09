@@ -14,16 +14,17 @@ const StyledPrimaryButton = styled.button<StyledButtonProps>`
 	justify-content: center;
 
 	background-color: ${({ bgcolor }) => bgcolor};
-	border: 2px solid ${COLORS.WHITE};
+	outline: none;
+	border: none;
 	color: ${({ color }) => color};
 	width: 100%;
+	height: 1.5rem;
 	font-size: ${MEASUREMENTS.FONTS_SIZE.SUBTITLES.MOBILE};
 	margin-bottom: 1rem;
 	cursor: pointer;
 	&:hover {
 		background-color: ${COLORS.WHITE};
 		color: ${COLORS.MAIN};
-		border: 2px solid ${COLORS.MAIN};
 	}
 	@media screen and (min-width: 780px) {
 		font-size: ${MEASUREMENTS.FONTS_SIZE.SUBTITLES.TABLET};

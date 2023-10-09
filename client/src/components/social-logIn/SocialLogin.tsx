@@ -43,7 +43,6 @@ const registerWithGoogle = async ({
 				body: JSON.stringify({
 					_id: result.user.uid,
 					userName,
-					address: 'none',
 					email: result.user.email,
 					...USER_DEFAULT_VALUES
 				}),
