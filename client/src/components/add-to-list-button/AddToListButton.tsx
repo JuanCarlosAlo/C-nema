@@ -20,14 +20,14 @@ interface AddToListButtonProps {
 }
 
 const AddToListButton = ({ id }: AddToListButtonProps) => {
+	const navigate = useNavigate();
 	const authContext = useContext(AuthContext);
 	const { currentUser, loadingFirebase } = authContext || {};
-	const navigate = useNavigate();
 	if (loadingFirebase) return <Loading />;
 	const { data, loading, setFetchInfo } = useFetch<MediaItem[]>({
 		url: USERS_URLS.GET_LIST_ITEMS + currentUser?.uid
 	});
-	if (loadingFirebase || loading) return <LoadingCompact />;
+	if (loading) return <LoadingCompact />;
 	const isListed = data?.some(item => item._id === id);
 	return (
 		<StyledAddButton
