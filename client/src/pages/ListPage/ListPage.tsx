@@ -1,4 +1,4 @@
-import { useContext, useEffect } from 'react';
+import { useContext } from 'react';
 import PageComponent from '../../components/page-component/PageComponent';
 import { useFetch } from '../../hooks/useFetch';
 import { Navigate } from 'react-router-dom';

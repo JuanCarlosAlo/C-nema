@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import { auth } from '../config/firebase.config';
 import { AuthContext } from '../context/Auth.context';
+import { USERS_URLS } from '../constants/urls';
 
 interface User {
 	uid: string;
@@ -73,9 +74,7 @@ const getUserInfoFromMongo = async (
 	setAttempts: (attempts: number) => void
 ) => {
 	try {
-		const response = await fetch(
-			`https://c-nema-server.onrender.com/users/userById/${user.uid}`
-		);
+		const response = await fetch(`${USERS_URLS.GET_USER_BY_ID}${user.uid}`);
 
 		if (response.ok) {
 			const userInfo = await response.json();
