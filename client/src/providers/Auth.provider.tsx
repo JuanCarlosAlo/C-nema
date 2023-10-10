@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import io from 'socket.io-client';
 import { auth } from '../config/firebase.config';
 import { AuthContext } from '../context/Auth.context';
-import { USERS_URLS } from '../constants/urls';
+import { USERS_URLS } from '../constants/urls.js';
 
 interface User {
 	uid: string;
