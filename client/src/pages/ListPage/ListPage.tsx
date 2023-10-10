@@ -18,11 +18,12 @@ const ListPage = () => {
 	const authContext = useContext(AuthContext);
 	const { currentUser, loadingFirebase } = authContext || {};
 
-	if (loadingFirebase || loading) return <Loading />;
+	if (loadingFirebase) return <Loading />;
 	const { data, loading } = useFetch<MediaItem[]>({
 		url: USERS_URLS.GET_LIST_ITEMS + currentUser?.uid
 	});
 
+	if (loading) return <Loading />;
 	if (!currentUser) return <Navigate to={'/register'} />;
 
 	if (!data) return <p>error</p>;
