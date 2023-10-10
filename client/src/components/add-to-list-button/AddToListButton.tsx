@@ -12,32 +12,23 @@ import { HEADERS } from '../../constants/headers';
 import { METHODS } from '../../constants/methods';
 import { setFetchInfo } from '../../interfaces/setFetchInfo';
 import LoadingCompact from '../loading-compact/LoadingCompact';
+import Loading from '../loading/Loading';
+import { MediaItem } from '../../interfaces/mediaItem';
 
 interface AddToListButtonProps {
 	id: string;
-}
-
-interface UserListData {
-	listedItems: {
-		_id: string;
-		date: number;
-	}[];
-	type: string;
-	userId: string;
-	_id: string;
 }
 
 const AddToListButton = ({ id }: AddToListButtonProps) => {
 	const authContext = useContext(AuthContext);
 	const { currentUser, loadingFirebase } = authContext || {};
 	const navigate = useNavigate();
-
-	const { data, loading, setFetchInfo } = useFetch<UserListData>({
-		url: ''
+	if (loadingFirebase) return <Loading />;
+	const { data, loading, setFetchInfo } = useFetch<MediaItem[]>({
+		url: USERS_URLS.GET_LIST_ITEMS + currentUser?.uid
 	});
-
 	if (loadingFirebase || loading) return <LoadingCompact />;
-	const isListed = data?.listedItems.some(item => item._id === id);
+	const isListed = data?.some(item => item._id === id);
 	return (
 		<StyledAddButton
 			onClick={() => {

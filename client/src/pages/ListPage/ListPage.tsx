@@ -25,9 +25,7 @@ const ListPage = () => {
 
 	if (loading) return <Loading />;
 	if (!currentUser) return <Navigate to={'/register'} />;
-
 	if (!data) return <p>error</p>;
-	console.log(data);
 	return (
 		<PageComponent isBack={false}>
 			<Secondaryheader />
