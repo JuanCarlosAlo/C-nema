@@ -17,6 +17,9 @@ import AditionalInfo from '../aditional-info/AditionalInfo';
 import Seasons from '../seasons/Seasons';
 import PlayButton from '../play-button/PlayButton';
 import AddToListButton from '../add-to-list-button/AddToListButton';
+import LoadingCompact from '../loading-compact/LoadingCompact';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/Auth.context';
 
 interface MoreInfoModalProps {
 	mediaItem: MediaItem;
@@ -24,6 +27,9 @@ interface MoreInfoModalProps {
 }
 
 const MoreInfoModal = ({ mediaItem, setContent }: MoreInfoModalProps) => {
+	const authContext = useContext(AuthContext);
+	const { currentUser, loadingFirebase } = authContext || {};
+	if (loadingFirebase) return <LoadingCompact />;
 	return (
 		<StyledMorInfoModal>
 			<StyledCoverContainer>
@@ -46,7 +52,7 @@ const MoreInfoModal = ({ mediaItem, setContent }: MoreInfoModalProps) => {
 					/>
 					<StyledInfoGap>
 						<PlayButton mediaItem={mediaItem} index={0} setValue={setContent} />
-						<AddToListButton id={mediaItem._id} />
+						<AddToListButton id={mediaItem._id} currentUser={currentUser} />
 					</StyledInfoGap>
 				</StyledTitleContainer>
 
