@@ -1,4 +1,4 @@
-const BASE = 'http://localhost:3000/';
+const BASE = 'https://c-nema-server.onrender.com/';
 
 export const ALL_ITEMS_URLS = {
 	ALL_ITEMS: BASE + 'all/all-items',

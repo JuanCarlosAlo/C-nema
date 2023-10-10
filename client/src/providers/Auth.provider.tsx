@@ -36,7 +36,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 	}, []);
 
 	useEffect(() => {
-		const socket = io('http://localhost:4000');
+		const socket = io('https://c-nema-server.onrender.com/');
 
 		socket.on('collectionUsersChange', async (change: any) => {
 			switch (change.operationType) {
