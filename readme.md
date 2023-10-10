@@ -1,6 +1,6 @@
 # C-nema
 
-![Project image](https://raw.githubusercontent.com/JuanCarlosAlo/Bites/main/client/public/images/readme0.jpg)
+![Project image](https://raw.githubusercontent.com/JuanCarlosAlo/C-nema/main/client/public/images/readme0.jpg)
 
 ## Live Demo
 
@@ -8,11 +8,11 @@
 
 ## Description
 
-Bites is a food delivery app that can track the time of your orders and have a rating sistem for every item.
+C-nema is an online stream platform for tv shows and films
 
 ## What have I learned in this project?
 
-In this project, I learned how to use timers based on the date of the expected delivery calculated by the time that takes from point A (Sol, Madrid) to point B (coordinates given by the user) given by an API (Open Route). The time given is added to the time of the delivery made and it's saved in the database in MongoDB, with that information, the timer and a completion bar are created. Also after purchase, the user can rate the items purchased, which determinates the recommended items from the recommended tab.
+In this project I have learned to use typescript in react being this my first project using typescript, after having learned typescript in a vanilla way I have had to learn to use react from the typescript perspective, this way all the hooks and methodologies already learned convert them to typescript format, besides learning how to configure react to work with typescript.
 
 ## Technologies
 
@@ -34,15 +34,15 @@ If you want to take a look at the project, I recommend:
 
 ## Desktop
 
-![Project screenshot](https://raw.githubusercontent.com/JuanCarlosAlo/Bites/main/client/public/images/readme1.jpg)
+![Project screenshot](https://raw.githubusercontent.com/JuanCarlosAlo/C-nema/main/client/public/images/readme1.jpg)
 
 ## Mobile
 
-![Project screenshot](https://raw.githubusercontent.com/JuanCarlosAlo/Bites/main/client/public/images/readme2.jpg)
+![Project screenshot](https://raw.githubusercontent.com/JuanCarlosAlo/C-nema/main/client/public/images/readme3.jpg)
 
 ## Part of the code
 
-![Screenshot of the project](https://raw.githubusercontent.com/JuanCarlosAlo/Bites/main/client/public/images/readme3.jpg)
+![Screenshot of the project](https://raw.githubusercontent.com/JuanCarlosAlo/C-nema/main/client/public/images/readme4.jpg)
 
 ## Author
 
