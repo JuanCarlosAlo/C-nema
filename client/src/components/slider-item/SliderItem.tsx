@@ -1,5 +1,7 @@
+import { useContext } from 'react';
 import { COLORS } from '../../constants/colors';
 import { MEASUREMENTS } from '../../constants/measurements';
+import { AuthContext } from '../../context/Auth.context';
 import { MediaItem } from '../../interfaces/mediaItem';
 
 import AddToListButton from '../add-to-list-button/AddToListButton';
@@ -15,6 +17,7 @@ import {
 	StyledTitleContainer
 } from './styles';
 import { v4 } from 'uuid';
+import LoadingCompact from '../loading-compact/LoadingCompact';
 
 interface SliderItemProps {
 	mediaItem: MediaItem;
@@ -22,6 +25,9 @@ interface SliderItemProps {
 }
 
 const SliderItem = ({ mediaItem, margin }: SliderItemProps) => {
+	const authContext = useContext(AuthContext);
+	const { currentUser, loadingFirebase } = authContext || {};
+	if (loadingFirebase) return <LoadingCompact />;
 	return (
 		<StyledSliderItem margin={margin}>
 			<StyledTitleContainer>
@@ -38,7 +44,7 @@ const SliderItem = ({ mediaItem, margin }: SliderItemProps) => {
 			<StyledInfoContainer>
 				<StyledInfoHover>
 					<PlayButton mediaItem={mediaItem} index={0} />
-					<AddToListButton id={mediaItem._id} />
+					<AddToListButton id={mediaItem._id} currentUser={currentUser} />
 					<MoreInfoButton mediaItem={mediaItem} />
 				</StyledInfoHover>
 				<StyledInfoHover>

@@ -22,9 +22,8 @@ const ListPage = () => {
 	const { data, loading } = useFetch<MediaItem[]>({
 		url: USERS_URLS.GET_LIST_ITEMS + currentUser?.uid
 	});
-
-	if (loading) return <Loading />;
 	if (!currentUser) return <Navigate to={'/register'} />;
+	if (loading) return <Loading />;
 	if (!data) return <p>error</p>;
 	return (
 		<PageComponent isBack={false}>

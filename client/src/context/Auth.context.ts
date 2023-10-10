@@ -1,16 +1,8 @@
 import { createContext, useContext } from 'react';
-
-interface User {
-	uid: string;
-	email: String;
-	userName: String;
-	type: String;
-	savedMedia: any;
-	watched: any;
-}
+import { CurrentUser } from '../interfaces/user';
 
 interface AuthContextValues {
-	currentUser: User | null;
+	currentUser: CurrentUser | null;
 	loadingFirebase: boolean;
 }
 

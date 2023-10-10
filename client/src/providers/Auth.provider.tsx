@@ -3,22 +3,14 @@ import io from 'socket.io-client';
 import { auth } from '../config/firebase.config';
 import { AuthContext } from '../context/Auth.context';
 import { USERS_URLS } from '../constants/urls';
-
-interface User {
-	uid: string;
-	email: String;
-	userName: String;
-	type: String;
-	savedMedia: any;
-	watched: any;
-}
+import { CurrentUser } from '../interfaces/user';
 
 interface AuthProviderProps {
 	children: React.ReactNode;
 }
 
 const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
-	const [currentUser, setCurrentUser] = useState<User | null>(null);
+	const [currentUser, setCurrentUser] = useState<CurrentUser | null>(null);
 	const [attempts, setAttempts] = useState<number>(0);
 	const [loadingFirebase, setLoadingFirebase] = useState<boolean>(true);
 
@@ -69,7 +61,7 @@ const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
 
 const getUserInfoFromMongo = async (
 	user: any,
-	setCurrentUser: (user: User | null) => void,
+	setCurrentUser: (user: CurrentUser | null) => void,
 	attempts: number,
 	setAttempts: (attempts: number) => void
 ) => {

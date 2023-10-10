@@ -131,7 +131,7 @@ controller.addToList = async (req, res) => {
       await currentUser.save();
     }
 
-    res.status(200).send(listCollection);
+    res.status(200).send([...listCollection.listedItems]);
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Error adding to list" });
@@ -227,7 +227,7 @@ controller.getListItems = async (req, res) => {
     const filteredListedMovies = allListedMovies.filter((movie) => movie !== null);
 
     const allListedItems = [...filteredListedMovies, ...filteredListedShows];
-
+    console.log(allListedItems)
     res.status(200).send(allListedItems);
   } catch (error) {
     res.status(500).send({ error: "Error al leer la base de datos" });

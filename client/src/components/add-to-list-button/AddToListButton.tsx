@@ -12,23 +12,23 @@ import { HEADERS } from '../../constants/headers';
 import { METHODS } from '../../constants/methods';
 import { setFetchInfo } from '../../interfaces/setFetchInfo';
 import LoadingCompact from '../loading-compact/LoadingCompact';
-import Loading from '../loading/Loading';
 import { MediaItem } from '../../interfaces/mediaItem';
+import { CurrentUser } from '../../interfaces/user';
 
 interface AddToListButtonProps {
 	id: string;
+	currentUser: CurrentUser | null | undefined;
 }
 
-const AddToListButton = ({ id }: AddToListButtonProps) => {
+const AddToListButton = ({ id, currentUser }: AddToListButtonProps) => {
 	const navigate = useNavigate();
-	const authContext = useContext(AuthContext);
-	const { currentUser, loadingFirebase } = authContext || {};
-	if (loadingFirebase) return <Loading />;
-	const { data, loading, setFetchInfo } = useFetch<MediaItem[]>({
+
+	const { data, loading, setFetchInfo } = useFetch<[]>({
 		url: USERS_URLS.GET_LIST_ITEMS + currentUser?.uid
 	});
 	if (loading) return <LoadingCompact />;
 	const isListed = data?.some(item => item._id === id);
+
 	return (
 		<StyledAddButton
 			onClick={() => {
