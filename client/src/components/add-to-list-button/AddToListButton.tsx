@@ -23,8 +23,8 @@ interface AddToListButtonProps {
 const AddToListButton = ({ id, currentUser }: AddToListButtonProps) => {
 	const navigate = useNavigate();
 
-	const { data, loading, setFetchInfo } = useFetch<[]>({
-		url: USERS_URLS.GET_LIST_ITEMS + currentUser?.uid
+	const { data, loading, setFetchInfo } = useFetch<[MediaItem]>({
+		url: currentUser ? USERS_URLS.GET_LIST_ITEMS + currentUser?.uid : ''
 	});
 	if (loading) return <LoadingCompact />;
 
