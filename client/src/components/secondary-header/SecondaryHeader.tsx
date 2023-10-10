@@ -45,7 +45,7 @@ const Secondaryheader = ({
 							url={url}
 							text={'Back'}
 							state={state}
-							border={true}
+							border={false}
 						/>
 						{text && (
 							<SecondaryButton
@@ -53,7 +53,7 @@ const Secondaryheader = ({
 								color={COLORS.MAIN}
 								url={secondaryUrl}
 								text={text}
-								border={true}
+								border={false}
 							/>
 						)}
 					</>

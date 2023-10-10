@@ -36,7 +36,7 @@ const StyledButton = styled.button<StyledButtonProps>`
 	}
 	@media screen and (min-width: 468px) {
 		font-size: ${MEASUREMENTS.FONTS_SIZE.SUBTITLES.TABLET};
-		width: 100px;
+		width: 150px;
 	}
 	@media screen and (min-width: 1024px) {
 		font-size: ${MEASUREMENTS.FONTS_SIZE.SUBTITLES.DESKTOP};

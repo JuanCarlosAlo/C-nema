@@ -30,20 +30,20 @@ export const MEASUREMENTS = {
 		TITLE: {
 			MOBILE: '1.3rem',
 			TABLET: '1.4rem',
-			DESKTOP: '1.8rem',
-			HIGH_HD: '2rem'
+			DESKTOP: '1.5rem',
+			HIGH_HD: '1.8rem'
 		},
 		SUBTITLES: {
 			MOBILE: '1.05rem',
 			TABLET: '1.15rem',
 			DESKTOP: '1.25rem',
-			HIGH_HD: '2rem'
+			HIGH_HD: '1.5rem'
 		},
 		TEXT: {
 			MOBILE: '0.9rem',
 			TABLET: '1rem',
 			DESKTOP: '1rem',
-			HIGH_HD: '1.5rem'
+			HIGH_HD: '1.2rem'
 		},
 		SMALL_TEXT: {
 			MOBILE: '0.7rem',

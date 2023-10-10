@@ -24,7 +24,7 @@ const StyledPage = styled.div<StyledPageComponentProps>`
 	}};
 	padding-left: 10px;
 	overflow-y: scroll;
-	max-width: 1080px;
+	/* max-width: 1080px; */
 	margin-left: auto;
 	margin-right: auto;
 

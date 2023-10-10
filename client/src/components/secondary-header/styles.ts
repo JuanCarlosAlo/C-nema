@@ -22,11 +22,12 @@ const StyledSecondaryHeader = styled.div<SecondaryHeaderProps>`
 			return ` ${MEASUREMENTS.HEADER.SECONDARY.HEIGHT.MOBILE}`;
 		}
 	}};
-	background-color: transparent;
+	background-color: ${COLORS.BLACK_TRANSPARENT};
 	width: 100%;
 	@media screen and (min-width: 768px) {
 		height: ${MEASUREMENTS.HEADER.SECONDARY.HEIGHT.DESKTOP};
 	}
+	z-index: 10;
 `;
 
 const StyledSecondaryHeaderContainer = styled.div<SecondaryHeaderProps>`
