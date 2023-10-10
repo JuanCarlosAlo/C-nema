@@ -27,7 +27,10 @@ const AddToListButton = ({ id, currentUser }: AddToListButtonProps) => {
 		url: USERS_URLS.GET_LIST_ITEMS + currentUser?.uid
 	});
 	if (loading) return <LoadingCompact />;
-	const isListed = data?.some(item => item._id === id);
+
+	const isListed = Array.isArray(data)
+		? data.some(item => item._id === id)
+		: undefined;
 
 	return (
 		<StyledAddButton
