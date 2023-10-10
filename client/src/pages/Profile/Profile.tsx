@@ -16,6 +16,7 @@ const Profile = () => {
 	const authContext = useContext(AuthContext);
 	const { currentUser } = authContext || {};
 	const { setContent } = useModalContext();
+
 	if (!currentUser) return <Navigate to={'/'} />;
 	return (
 		<PageComponent isBack>
